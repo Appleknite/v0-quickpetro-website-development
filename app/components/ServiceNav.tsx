@@ -14,7 +14,7 @@ const services = [
 
 export default function ServiceNav({ activeService, onServiceChange }: ServiceNavProps) {
   return (
-    <nav className="sticky top-0 z-50 bg-surface border-t border-gray-200 flex">
+    <nav className="sticky top-0 z-50 bg-surface border-t border-gray-200 flex overflow-x-auto">
       {services.map((service) => {
         const isActive = activeService === service.id
 
@@ -22,7 +22,7 @@ export default function ServiceNav({ activeService, onServiceChange }: ServiceNa
           <button
             key={service.id}
             onClick={() => onServiceChange(service.id)}
-            className={`flex-1 text-xs uppercase tracking-wider font-medium py-3 px-2 border-b-2 cursor-pointer transition-all duration-150 ${
+            className={`flex-1 min-w-max sm:flex-1 text-xs uppercase tracking-wider font-medium py-3 px-2 sm:px-3 border-b-2 cursor-pointer transition-all duration-150 whitespace-nowrap ${
               isActive
                 ? 'text-accent border-b-accent bg-amber-100'
                 : 'text-body border-b-transparent bg-transparent hover:bg-amber-50 hover:text-body'

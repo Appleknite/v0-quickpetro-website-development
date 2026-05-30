@@ -11,7 +11,7 @@ export default function Home() {
   const [activeService, setActiveService] = useState<'filtration' | 'cleaning' | 'analysis' | 'support'>('filtration')
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Header />
       <Hero />
       <ServiceNav activeService={activeService} onServiceChange={setActiveService as any} />

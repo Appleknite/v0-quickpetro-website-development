@@ -2,7 +2,7 @@ import { Phone, Mail } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-primary border-t border-gray-700 px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+    <footer className="fixed bottom-0 left-0 right-0 bg-primary border-t border-gray-700 px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
       {/* Left - Contact column */}
       <div className="flex flex-col gap-1.5">
         <a

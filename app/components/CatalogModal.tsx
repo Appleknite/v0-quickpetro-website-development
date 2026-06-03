@@ -11,29 +11,27 @@ export default function CatalogModal({ isOpen, onClose }: CatalogModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-lg shadow-xl overflow-hidden flex flex-col">
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 bg-gradient-to-r from-primary to-secondary/20">
-          <h2 className="text-xl font-semibold text-primary">QUICKPETRO — LEGA-R Product Catalog</h2>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            aria-label="Close catalog"
-          >
-            <X size={24} className="text-gray-600" />
-          </button>
-        </div>
+    <div className="fixed inset-0 z-50 bg-black flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-gray-800 px-6 py-4 bg-gradient-to-r from-primary to-secondary/20 flex-shrink-0">
+        <h2 className="text-xl font-semibold text-primary">QUICKPETRO — LEGA-R Product Catalog</h2>
+        <button
+          onClick={onClose}
+          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          aria-label="Close catalog"
+        >
+          <X size={24} className="text-gray-600" />
+        </button>
+      </div>
 
-        {/* Content - Scrollable */}
-        <div className="flex-1 overflow-y-auto bg-[#050A14]">
-          <iframe
-            srcDoc={catalogHTML}
-            className="w-full h-full border-none"
-            title="Product Catalog"
-            sandbox="allow-same-origin"
-          />
-        </div>
+      {/* Content - Fullscreen */}
+      <div className="flex-1 overflow-y-auto bg-[#050A14] w-full">
+        <iframe
+          srcDoc={catalogHTML}
+          className="w-full h-full border-none"
+          title="Product Catalog"
+          sandbox="allow-same-origin"
+        />
       </div>
     </div>
   )

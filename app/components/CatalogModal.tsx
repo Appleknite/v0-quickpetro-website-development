@@ -27,7 +27,7 @@ export default function CatalogModal({ isOpen, onClose }) {
 
     .catalog-wrapper {
       background: #050A14;
-      padding: 40px 20px;
+      padding: 20px;
       min-height: 100vh;
       color: var(--text-primary);
       font-family: 'Nunito Sans', sans-serif;
@@ -35,14 +35,37 @@ export default function CatalogModal({ isOpen, onClose }) {
       line-height: 1.6;
     }
 
+    @media (min-width: 640px) {
+      .catalog-wrapper {
+        padding: 40px 20px;
+      }
+    }
+
     .page {
-      width: 794px;
+      width: 100%;
+      max-width: 794px;
       min-height: 1123px;
       margin: 0 auto 48px;
       position: relative;
       overflow: hidden;
       background: var(--bg-primary);
       box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5);
+      transform-origin: top center;
+    }
+
+    @media (max-width: 839px) {
+      .page {
+        transform: scale(max(0.8, 100vw / 920px));
+        margin-bottom: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        transform: scale(max(0.65, 100vw / 1200px));
+        min-height: auto;
+        margin-bottom: 16px;
+      }
     }
 
     .cover {
@@ -882,18 +905,18 @@ export default function CatalogModal({ isOpen, onClose }) {
   `
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-black/75 flex overflow-y-auto">
       {/* Scoped CSS delivery inside the modal wrapper */}
       <style dangerouslySetInnerHTML={{ __html: cssStyles }} />
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-[850px] bg-[#050A14] rounded-lg shadow-2xl overflow-y-auto max-h-[92vh] border border-gray-800 p-4 custom-scrollbar">
+      <div className="relative w-full max-w-[850px] mx-auto bg-[#050A14] shadow-2xl border border-gray-800 flex flex-col">
         
         {/* Sticky Close Button Layer */}
-        <div className="sticky top-0 z-50 flex justify-end mb-2">
+        <div className="sticky top-0 z-50 flex justify-end mb-2 bg-[#050A14] border-b border-gray-800 p-4">
           <button 
             onClick={onClose}
-            className="p-2 bg-gray-900/90 hover:bg-red-950 text-gray-400 hover:text-red-400 border border-gray-800 rounded-full transition-all shadow-md backdrop-blur cursor-pointer"
+            className="p-2 bg-gray-900/90 hover:bg-red-950 text-gray-400 hover:text-red-400 border border-gray-800 rounded-full transition-all shadow-md backdrop-blur cursor-pointer flex-shrink-0"
             title="Close Catalog"
           >
             <X size={20} />
@@ -901,7 +924,7 @@ export default function CatalogModal({ isOpen, onClose }) {
         </div>
 
         {/* --- DIGITAL CATALOG CONTENT CONTENT --- */}
-        <div className="catalog-wrapper rounded-md">
+        <div className="catalog-wrapper flex-1 overflow-y-auto">
 
           {/* ======================== PAGE 1: COVER ======================== */}
           <div className="page cover">

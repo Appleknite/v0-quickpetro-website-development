@@ -1,6 +1,12 @@
+'use client'
+
 import { FileText } from 'lucide-react'
+import { useState } from 'react'
+import CatalogModal from '../CatalogModal'
 
 export default function ThermicFluidCleaning() {
+  const [isCatalogOpen, setIsCatalogOpen] = useState(false)
+
   return (
     <div>
       {/* Title */}
@@ -34,11 +40,17 @@ export default function ThermicFluidCleaning() {
 
       {/* Media pills row */}
       <div className="flex gap-2">
-        <button className="flex items-center gap-1.5 bg-gray-100 border border-gray-200 hover:border-secondary hover:text-secondary rounded-sm px-2.5 py-1 text-xs font-medium text-gray-700 transition-colors">
+        <button 
+          onClick={() => setIsCatalogOpen(true)}
+          className="flex items-center gap-1.5 bg-gray-100 border border-gray-200 hover:border-secondary hover:text-secondary hover:bg-amber-50 rounded-sm px-2.5 py-1 text-xs font-medium text-gray-700 transition-colors cursor-pointer"
+        >
           <FileText size={13} className="text-secondary" />
           Catalogue
         </button>
       </div>
+
+      {/* Catalog Modal */}
+      <CatalogModal isOpen={isCatalogOpen} onClose={() => setIsCatalogOpen(false)} />
     </div>
   )
 }

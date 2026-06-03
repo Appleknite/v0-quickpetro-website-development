@@ -1,8 +1,19 @@
+"use client";
+
 import { useState } from 'react';
 
 export default function TechnicalSupport() {
   const [result, setResult] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fileName, setFileName] = useState("");
+
+  const handleFileChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setFileName(event.target.files[0].name);
+    } else {
+      setFileName("");
+    }
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -22,7 +33,8 @@ export default function TechnicalSupport() {
       
       if (data.success) {
         setResult("Success! We have received your message.");
-        event.target.reset(); // Clears the form
+        event.target.reset(); 
+        setFileName("");      
       } else {
         setResult("Error submitting form. Please try again.");
       }
@@ -33,14 +45,12 @@ export default function TechnicalSupport() {
     }
   };
 
-  // Shared styles to keep the code clean and match your original design
   const labelStyle = { display: 'block', fontSize: '12px', fontWeight: 'bold', color: '#6c757d', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' };
   const inputStyle = { width: '100%', padding: '12px', border: '1px solid #ced4da', borderRadius: '4px', boxSizing: 'border-box', fontSize: '14px', color: '#495057' };
 
   return (
     <section style={{ maxWidth: '1000px', margin: '0', padding: '20px', fontFamily: 'sans-serif' }}>
       
-      {/* Header matching your screenshot */}
       <div style={{ borderLeft: '3px solid #d97706', paddingLeft: '12px', marginBottom: '16px' }}>
         <h2 style={{ margin: '0', fontSize: '22px', color: '#212529' }}>Technical Support</h2>
       </div>
@@ -50,7 +60,6 @@ export default function TechnicalSupport() {
 
       <form onSubmit={onSubmit}>
         
-        {/* Row 1: Name and Contact side-by-side */}
         <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
           <div style={{ flex: 1 }}>
             <label htmlFor="name" style={labelStyle}>Name</label>
@@ -62,25 +71,32 @@ export default function TechnicalSupport() {
           </div>
         </div>
 
-        {/* Row 2: Textarea */}
         <div style={{ marginBottom: '20px' }}>
           <label htmlFor="message" style={labelStyle}>Describe your issue</label>
           <textarea id="message" name="message" rows="4" placeholder="System type, symptoms, how long the issue has persisted..." required style={{ ...inputStyle, resize: 'vertical' }}></textarea>
         </div>
 
-        {/* Row 3: File Attachment Area */}
+        {/* Updated File Attachment Area with the new heading */}
         <div style={{ marginBottom: '30px' }}>
+          
+          {/* This is the new heading you requested */}
+          <span style={labelStyle}>Attach 1 image; Max 10MB</span>
+          
           <div style={{ border: '2px dashed #ced4da', borderRadius: '6px', padding: '30px', textAlign: 'center', backgroundColor: '#f8f9fa' }}>
-            <label style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#868e96', fontSize: '14px' }}>
-              <span style={{ fontSize: '24px', marginBottom: '10px' }}>↑</span>
-              Attach image or video (optional)
-              {/* Web3Forms requires the name to be "attachment" to process files */}
-              <input type="file" name="attachment" accept="image/*,video/*" style={{ display: 'none' }} />
+            <label style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', color: fileName ? '#212529' : '#868e96', fontSize: '14px' }}>
+              <span style={{ fontSize: '24px', marginBottom: '10px' }}>{fileName ? "📄" : "↑"}</span>
+              {fileName ? `Selected: ${fileName}` : "Click to select a file"}
+              <input 
+                type="file" 
+                name="attachment" 
+                accept="image/*" 
+                onChange={handleFileChange}
+                style={{ display: 'none' }} 
+              />
             </label>
           </div>
         </div>
 
-        {/* Submit Button */}
         <button 
           type="submit" 
           disabled={isSubmitting}
@@ -89,7 +105,6 @@ export default function TechnicalSupport() {
           {isSubmitting ? "Sending..." : "Send Enquiry"}
         </button>
 
-        {/* Success/Error Message */}
         {result && <p style={{ marginTop: '15px', fontWeight: 'bold', color: '#212529' }}>{result}</p>}
         
       </form>

@@ -1,7 +1,12 @@
-import React from 'react';
+'use client'
 
-const ProductCatalog = () => {
-  // Injecting the exact CSS styles provided in the original HTML file
+import React from 'react'
+import { X } from 'lucide-react'
+
+export default function CatalogModal({ isOpen, onClose }) {
+  if (!isOpen) return null
+
+  // Injecting the exact CSS styles provided in the original design
   const cssStyles = `
     :root {
       --bg-deep: #070C18;
@@ -37,6 +42,7 @@ const ProductCatalog = () => {
       position: relative;
       overflow: hidden;
       background: var(--bg-primary);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5);
     }
 
     .cover {
@@ -873,395 +879,406 @@ const ProductCatalog = () => {
       .catalog-wrapper { padding: 0; background: var(--bg-deep); }
       .page { margin: 0; page-break-after: always; width: 100%; }
     }
-  `;
+  `
 
   return (
-    <div className="catalog-wrapper">
-      {/* Scoped CSS delivery without requiring external style sheet setup */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 overflow-y-auto">
+      {/* Scoped CSS delivery inside the modal wrapper */}
       <style dangerouslySetInnerHTML={{ __html: cssStyles }} />
+      
+      {/* Modal Container */}
+      <div className="relative w-full max-w-[850px] bg-[#050A14] rounded-lg shadow-2xl overflow-y-auto max-h-[92vh] border border-gray-800 p-4 custom-scrollbar">
+        
+        {/* Sticky Close Button Layer */}
+        <div className="sticky top-0 z-50 flex justify-end mb-2">
+          <button 
+            onClick={onClose}
+            className="p-2 bg-gray-900/90 hover:bg-red-950 text-gray-400 hover:text-red-400 border border-gray-800 rounded-full transition-all shadow-md backdrop-blur cursor-pointer"
+            title="Close Catalog"
+          >
+            <X size={20} />
+          </button>
+        </div>
 
-      {/* ======================== PAGE 1: COVER ======================== */}
-      <div className="page cover">
-        {/* Ghost watermark: abstract heat exchanger */}
-        <svg className="watermark-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="50" y="90" width="320" height="140" rx="14" stroke="#F59E0B" strokeWidth="3.5" />
-          <rect x="20" y="112" width="380" height="22" rx="5" stroke="#F59E0B" strokeWidth="2" />
-          <rect x="20" y="186" width="380" height="22" rx="5" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="110" y1="112" x2="110" y2="186" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="150" y1="112" x2="150" y2="186" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="190" y1="112" x2="190" y2="186" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="230" y1="112" x2="230" y2="186" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="270" y1="112" x2="270" y2="186" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="310" y1="112" x2="310" y2="186" stroke="#F59E0B" strokeWidth="2" />
-          <circle cx="50" cy="160" r="22" stroke="#F59E0B" strokeWidth="2" />
-          <circle cx="370" cy="160" r="22" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="28" y1="155" x2="0" y2="145" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="28" y1="165" x2="0" y2="175" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="392" y1="155" x2="420" y2="145" stroke="#F59E0B" strokeWidth="2" />
-          <line x1="392" y1="165" x2="420" y2="175" stroke="#F59E0B" strokeWidth="2" />
-          <circle cx="110" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
-          <circle cx="150" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
-          <circle cx="190" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
-          <circle cx="230" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
-          <circle cx="270" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
-          <circle cx="310" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
-        </svg>
+        {/* --- DIGITAL CATALOG CONTENT CONTENT --- */}
+        <div className="catalog-wrapper rounded-md">
 
-        <div className="cover-hero">
-          <div className="cover-content">
-            <div className="brand-name">QUICKPETRO</div>
-            <div className="brand-tagline">High-Performance Industrial Fluid Solutions</div>
-            <div className="cover-divider"></div>
-            <div className="product-name">LEGA-R</div>
-            <div className="product-subtitle">Dual-Action System Cleaner & Flushing Fluid</div>
+          {/* ======================== PAGE 1: COVER ======================== */}
+          <div className="page cover">
+            <svg className="watermark-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="50" y="90" width="320" height="140" rx="14" stroke="#F59E0B" strokeWidth="3.5" />
+              <rect x="20" y="112" width="380" height="22" rx="5" stroke="#F59E0B" strokeWidth="2" />
+              <rect x="20" y="186" width="380" height="22" rx="5" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="110" y1="112" x2="110" y2="186" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="150" y1="112" x2="150" y2="186" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="190" y1="112" x2="190" y2="186" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="230" y1="112" x2="230" y2="186" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="270" y1="112" x2="270" y2="186" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="310" y1="112" x2="310" y2="186" stroke="#F59E0B" strokeWidth="2" />
+              <circle cx="50" cy="160" r="22" stroke="#F59E0B" strokeWidth="2" />
+              <circle cx="370" cy="160" r="22" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="28" y1="155" x2="0" y2="145" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="28" y1="165" x2="0" y2="175" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="392" y1="155" x2="420" y2="145" stroke="#F59E0B" strokeWidth="2" />
+              <line x1="392" y1="165" x2="420" y2="175" stroke="#F59E0B" strokeWidth="2" />
+              <circle cx="110" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
+              <circle cx="150" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
+              <circle cx="190" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
+              <circle cx="230" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
+              <circle cx="270" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
+              <circle cx="310" cy="149" r="5" stroke="#F59E0B" strokeWidth="1.5" />
+            </svg>
 
-            <div className="engineered-for">
-              <span className="engineered-label">Engineered for</span>
-              <span className="engineered-pill">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <rect x="2" y="7" width="20" height="14" rx="3" />
-                  <path d="M16 7V5a4 4 0 00-8 0v2" />
-                  <line x1="12" y1="12" x2="12" y2="16" />
-                </svg>
-                Heat Exchangers
+            <div className="cover-hero">
+              <div className="cover-content">
+                <div className="brand-name">QUICKPETRO</div>
+                <div className="brand-tagline">High-Performance Industrial Fluid Solutions</div>
+                <div className="cover-divider"></div>
+                <div className="product-name">LEGA-R</div>
+                <div className="product-subtitle">Dual-Action System Cleaner & Flushing Fluid</div>
+
+                <div className="engineered-for">
+                  <span className="engineered-label">Engineered for</span>
+                  <span className="engineered-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                      <rect x="2" y="7" width="20" height="14" rx="3" />
+                      <path d="M16 7V5a4 4 0 00-8 0v2" />
+                      <line x1="12" y1="12" x2="12" y2="16" />
+                    </svg>
+                    Heat Exchangers
+                  </span>
+                  <span className="engineered-plus">+</span>
+                  <span className="engineered-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                      <path d="M4 12h3M17 12h3M12 4v3M12 17v3" />
+                      <circle cx="12" cy="12" r="5" />
+                    </svg>
+                    Radiators
+                  </span>
+                </div>
+
+                <div className="cover-stats">
+                  <div>
+                    <div className="stat-val" style={{ color: 'var(--amber)' }}>4</div>
+                    <div className="stat-lbl">Contaminants<br />Eliminated</div>
+                  </div>
+                  <div>
+                    <div className="stat-val" style={{ color: 'var(--teal-light)', fontSize: '22px' }}>–10 → 60°C</div>
+                    <div className="stat-lbl">Operating<br />Range</div>
+                  </div>
+                  <div>
+                    <div className="stat-val" style={{ color: 'var(--amber)' }}>{"<100 ppm"}</div>
+                    <div className="stat-lbl">Moisture<br />Content</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="cover-footer">
+              <div className="contact-item">
+                <label>Address</label>
+                <span>
+                  <a href="https://maps.google.com/?q=Pushkar+Industrial+Estate,+Phase-1,+GIDC,+Vatva,+Ahmedabad+382445,+Gujarat,+India" target="_blank" rel="noopener noreferrer">
+                    Pushkar Industrial Estate, Phase-1, GIDC, Vatva, Ahmedabad – 382445, Gujarat, India
+                  </a>
+                </span>
+              </div>
+              <div className="contact-item">
+                <label>Contact</label>
+                <span><a href="tel:+919825044917">+91 9825044917</a></span>
+              </div>
+              <div className="contact-item">
+                <label>Website</label>
+                <span><a href="https://www.quickpetro.in" target="_blank" rel="noopener noreferrer">www.quickpetro.in</a></span>
+              </div>
+            </div>
+            <div className="page-num">01 / 05</div>
+          </div>
+
+          {/* ======================== PAGE 2: OVERVIEW ======================== */}
+          <div className="page">
+            <div className="page-header-bar">
+              <span className="page-brand">QUICKPETRO</span>
+              <span className="page-product-label">LEGA-R — Product Overview</span>
+            </div>
+
+            <div className="section-header">
+              <div className="eyebrow">01 — Product Overview</div>
+              <div className="section-title">The Ultimate Dual-Action Solution<br />for <span>Thermal Efficiency</span></div>
+              <div className="title-underline"></div>
+            </div>
+
+            <div className="section-body">
+              <div className="intro-grid">
+                <div className="intro-text">
+                  <strong>LEGA-R</strong> is a high-performance, dual-action system cleaner and flushing fluid specifically engineered to maintain and restore the peak efficiency of all types of Radiators and Heat Exchangers.<br /><br />
+                  Formulated for demanding industrial environments, LEGA-R addresses the full spectrum of system contamination that degrades thermal performance over time — from new-build commissioning to scheduled lifecycle maintenance.
+                </div>
+                <div className="formula-card">
+                  This advanced formula works quickly and aggressively to <strong>displace, dissolve, and completely flush</strong> out accumulated waste materials, leaving behind a pristine system perfectly prepared for a fresh charge of heat transfer fluid.
+                </div>
+              </div>
+
+              <div className="elim-section-label">What LEGA-R Eliminates — & Why It Matters</div>
+
+              <div className="elim-grid">
+                <div className="elim-card">
+                  <div className="elim-card-hexbg"></div>
+                  <div className="elim-title"><div className="elim-icon">🔥</div>Carbon Deposits & Sludge</div>
+                  <div className="elim-advantage">Restores peak heat transfer efficiency and prevents component wear. Sludge buildup is the primary cause of thermal degradation in closed-loop systems, reducing efficiency by up to 30%.</div>
+                </div>
+                <div className="elim-card">
+                  <div className="elim-card-hexbg"></div>
+                  <div className="elim-title"><div className="elim-icon">💧</div>Oxidized Residual Fluids</div>
+                  <div className="elim-advantage">Prevents immediate cross-contamination and maximizes the lifespan of your fresh fluid charge. Oxidized remnants act as catalysts that accelerate new fluid degradation from day one.</div>
+                </div>
+                <div className="elim-card">
+                  <div className="elim-card-hexbg"></div>
+                  <div className="elim-title"><div className="elim-icon">⚡</div>Volatile Light Ends</div>
+                  <div className="elim-advantage">Enhances plant safety by removing highly flammable, low-boiling hazards. Critical for facilities with open flame or high-temperature processes in proximity to the system.</div>
+                </div>
+                <div className="elim-card">
+                  <div className="elim-card-hexbg"></div>
+                  <div className="elim-title"><div className="elim-icon">🌊</div>Moisture & Debris</div>
+                  <div className="elim-advantage">Prevents erratic system performance, internal fluid degradation, and mechanical pump damage. Even trace moisture causes cavitation, accelerated oxidation, and pump seal failure.</div>
+                </div>
+              </div>
+            </div>
+            <div className="page-num">02 / 05</div>
+          </div>
+
+          {/* ======================== PAGE 3: USAGE GUIDE ======================== */}
+          <div className="page">
+            <div className="page-header-bar">
+              <span className="page-brand">QUICKPETRO</span>
+              <span className="page-product-label">LEGA-R — Usage Guide</span>
+            </div>
+
+            <div className="section-header">
+              <div className="eyebrow">02 — Application Guide</div>
+              <div className="section-title">LEGA-R <span>Usage</span> Guide</div>
+              <div className="title-underline"></div>
+            </div>
+
+            <div className="section-body">
+              <div className="usage-two-col">
+                <div className="temp-card">
+                  <div className="temp-label">Application & Operating Range</div>
+                  <div className="temp-range">–10°C → 60°C</div>
+                  <div className="temp-desc">Works best from ten below freezing up to warm operating conditions, keeping flow smooth even during cold starts. Maintains optimal viscosity across the full temperature envelope, ensuring effective cleaning regardless of ambient conditions.</div>
+                </div>
+                <div className="financial-card">
+                  <div className="financial-title">↑ Financial & Operational Gains</div>
+                  <div className="fin-item"><div className="fin-dot"></div>Longer fluid life & reduced top-up frequency</div>
+                  <div className="fin-item"><div className="fin-dot"></div>Fewer unplanned service calls & engineer visits</div>
+                  <div className="fin-item"><div className="fin-dot"></div>Steady, uninterrupted production throughput</div>
+                  <div className="fin-item"><div className="fin-dot"></div>Reduced downtime from unexpected system failures</div>
+                  <div className="fin-item"><div className="fin-dot"></div>Extended equipment service life & ROI</div>
+                </div>
+              </div>
+
+              <div className="lifecycle-label">System Lifecycle — Vulnerability Window & LEGA-R Application Points</div>
+              <div className="lifecycle-track">
+                <div className="lifecycle-steps">
+                  <div className="lc-step">
+                    <div className="lc-circle">
+                      <div className="lc-num">01</div>
+                    </div>
+                    <div className="lc-name">BUILD</div>
+                    <div className="lc-desc">Assembly, welding & fabrication</div>
+                  </div>
+                  <div className="lc-step">
+                    <div className="lc-circle" style={{ borderColor: 'var(--orange)' }}>
+                      <div className="lc-num" style={{ color: 'var(--orange)' }}>02</div>
+                    </div>
+                    <div className="lc-name">COMMISSION</div>
+                    <div className="lc-desc">First fluid fill & pressure testing</div>
+                  </div>
+                  <div className="lc-step">
+                    <div className="lc-circle" style={{ borderColor: 'var(--teal)' }}>
+                      <div className="lc-num" style={{ color: 'var(--teal-light)' }}>03</div>
+                    </div>
+                    <div className="lc-name">OPERATE</div>
+                    <div className="lc-desc">Thermal transfer & steady production</div>
+                  </div>
+                  <div className="lc-step">
+                    <div className="lc-circle" style={{ borderColor: 'var(--teal)' }}>
+                      <div className="lc-num" style={{ color: 'var(--teal-light)' }}>04</div>
+                    </div>
+                    <div className="lc-name">MAINTAIN</div>
+                    <div className="lc-desc">Lifecycle servicing & fluid change</div>
+                  </div>
+                </div>
+                <div className="vuln-gap">
+                  <strong>⚠ The Vulnerability Gap:</strong> When the system sits empty between stages, leftover metals, dust, and storage residues accumulate. A single LEGA-R pre-charge flush completely eliminates this risk.
+                </div>
+              </div>
+
+              <div className="new-build-info">
+                <strong>New Build Applications:</strong> LEGA-R clears new builds of leftover metals, dust, and storage residues before the first fill — addressing the critical vulnerability gap that standard commissioning misses. High-efficiency shell-and-tube designs with intricate baffling and narrow tube pathways are prime traps for microscopic manufacturing debris, welding slag, and environmental dust.
+              </div>
+            </div>
+            <div className="page-num">03 / 05</div>
+          </div>
+
+          {/* ======================== PAGE 4: PROPERTIES ======================== */}
+          <div className="page">
+            <div className="page-header-bar">
+              <span className="page-brand">QUICKPETRO</span>
+              <span className="page-product-label">LEGA-R — Technical Data Sheet</span>
+            </div>
+
+            <div className="section-header">
+              <div className="eyebrow">03 — Technical Data</div>
+              <div className="section-title">Typical Physical &<br /><span>Chemical Properties</span></div>
+              <div className="title-underline"></div>
+            </div>
+
+            <div className="section-body">
+              <div className="prop-note">
+                The following matrix represents typical laboratory analysis data for LEGA-R System Cleaner and Flushing Fluid. These values serve as <strong>general operational guidelines</strong> based on current production and may be influenced by allowable production tolerances. Values are not specifications and should not be interpreted as guaranteed analyses for any specific lot.
+              </div>
+
+              <table className="prop-table">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Unit</th>
+                    <th>Test Code (ASTM / ISO)</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Appearance</td><td>N/A</td><td>N/A</td><td>Colorless transparent, no odour</td></tr>
+                  <tr><td>Operating Range</td><td>°C (°F)</td><td>N/A</td><td>–10 to 60</td></tr>
+                  <tr><td>Density @ 25°C</td><td>kg/m³</td><td>ASTM D4052</td><td>0.820 – 0.850</td></tr>
+                  <tr><td>Kinematic Viscosity @ 40°C</td><td>mm²/s (cSt)</td><td>ASTM D445</td><td>1.0 – 6.0</td></tr>
+                  <tr><td>Kinematic Viscosity @ 100°C</td><td>mm²/s (cSt)</td><td>ASTM D445</td><td>NTR</td></tr>
+                  <tr><td>Flash Point (COC)</td><td>°C</td><td>ASTM D92</td><td>{"<20"}</td></tr>
+                  <tr><td>Coefficient of Thermal Expansion</td><td>°C</td><td>NTR</td><td>0.00077 / °C</td></tr>
+                  <tr><td>Autoignition Point</td><td>°C</td><td>ASTM E659</td><td>300</td></tr>
+                  <tr><td>Pour Point</td><td>°C</td><td>ISO 3016</td><td>–12</td></tr>
+                  <tr><td>Neutralization Nr. (acid) — TAN</td><td>mgKOH/g</td><td>ASTM D974</td><td>{"<0.05"}</td></tr>
+                  <tr><td>Maximum Bulk Temperature</td><td>°C</td><td>NTR</td><td>45</td></tr>
+                  <tr><td>Maximum Film Temperature</td><td>°C</td><td>NTR</td><td>50</td></tr>
+                  <tr><td>Boiling Point at 1013 mbar</td><td>°C</td><td>NTR</td><td>60</td></tr>
+                  <tr><td>Average Molecular Weight</td><td>—</td><td>NTR</td><td>400</td></tr>
+                  <tr><td>Moisture Content</td><td>PPM</td><td>ASTM D6304</td><td>{"<100"}</td></tr>
+                </tbody>
+              </table>
+
+              <div className="abbrev-row">
+                <div><strong>COC</strong> — Cleveland Open Cup Test</div>
+                <div><strong>NTR</strong> — No Test Reported</div>
+              </div>
+            </div>
+            <div className="page-num">04 / 05</div>
+          </div>
+
+          {/* ======================== PAGE 5: OPERATIONAL SCOPE ======================== */}
+          <div className="page" style={{ paddingBottom: '60px' }}>
+            <div className="page-header-bar">
+              <span className="page-brand">QUICKPETRO</span>
+              <span className="page-product-label">LEGA-R — Operational Scope & Safety</span>
+            </div>
+
+            <div className="section-header">
+              <div className="eyebrow">04 — Safety & Operations</div>
+              <div className="section-title">Operational Scope &<br /><span>Safety Guidelines</span></div>
+              <div className="title-underline"></div>
+            </div>
+
+            <div className="section-body">
+              <div style={{ fontFamily: "'Exo 2', sans-serif", fontWeight: 700, fontSize: '12px', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--teal-light)', marginBottom: '14px' }}>
+                Site Readiness: Requirement of Party Scope
+              </div>
+
+              <div className="safety-grid">
+                <div className="safety-card client">
+                  <div className="sc-icon">🔧</div>
+                  <div className="sc-title">Client Site Scope</div>
+                  <div className="sc-text">Provide a high-pressure <strong>air compressor (Minimum 150 CFM, 5 Kg/cm²)</strong> to completely purge residual fluid after cleaning is complete.</div>
+                </div>
+                <div className="safety-card warning">
+                  <div className="sc-icon">⚠️</div>
+                  <div className="sc-title">Critical Precautions</div>
+                  <div className="sc-text">Vent all <strong>air and moisture completely before heating</strong>. Avoid copper components. Check pumps regularly to prevent air ingress and fluid degradation.</div>
+                </div>
+                <div className="safety-card disposal">
+                  <div className="sc-icon">♻️</div>
+                  <div className="sc-title">Fluid Disposal</div>
+                  <div className="sc-text">Recycle via <strong>filtration or distillation</strong>, or burn for <strong>industrial energy recovery</strong>. Never discharge untreated fluid to drains or waterways.</div>
+                </div>
+              </div>
+
+              <div className="reaction-grid">
+                <div className="reaction-box">
+                  <div className="rx-title">⚗  The Sludge Catalyst — Why Air Is Dangerous</div>
+                  <div className="rx-formula">
+                    <div className="rx-el">
+                      <div className="rx-el-icon">🌡️</div>
+                      <div className="rx-el-name">Hot Oil</div>
+                    </div>
+                    <div className="rx-op">+</div>
+                    <div className="rx-el">
+                      <div className="rx-el-icon" style={{ fontSize: '14px' }}>O₂</div>
+                      <div className="rx-el-name">Air Exposure</div>
+                </div>
+                    <div className="rx-op">=</div>
+                    <div className="rx-el">
+                      <div className="rx-el-icon">⚙️</div>
+                      <div className="rx-el-name">Fluid Thickening & Sludge</div>
+                    </div>
+                  </div>
+                  <div className="rx-result">
+                    <div className="rx-result-icon">🔴</div>
+                    <div className="rx-result-text"><strong>Risk:</strong> Hot oil oxidizes rapidly on contact with air, causing fatal fluid thickening and system blockage.</div>
+                  </div>
+                  <div className="rx-note">→ Purge all air completely before heating the system.</div>
+                </div>
+
+                <div className="reaction-box">
+                  <div className="rx-title">⚗  The Chemical Accelerator — Why Copper Is Incompatible</div>
+                  <div className="rx-formula">
+                    <div className="rx-el">
+                      <div className="rx-el-icon">🔥</div>
+                      <div className="rx-el-name">High Heat</div>
+                    </div>
+                    <div className="rx-op">+</div>
+                    <div className="rx-el">
+                      <div className="rx-el-icon" style={{ borderColor: 'rgba(180,140,60,0.4)', fontSize: '14px' }}>Cu</div>
+                      <div className="rx-el-name">Copper Alloys</div>
+                    </div>
+                    <div className="rx-op">=</div>
+                    <div className="rx-el">
+                      <div className="rx-el-icon">💀</div>
+                      <div className="rx-el-name">Accelerated Oil Degradation</div>
+                    </div>
+                  </div>
+                  <div className="rx-result">
+                    <div className="rx-result-icon">🔴</div>
+                    <div className="rx-result-text"><strong>Risk:</strong> Copper acts as a severe catalyst, compounding oil breakdown at operational temperatures.</div>
+                  </div>
+                  <div className="rx-note">→ Replace copper alloy components with steel or compatible alternatives.</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="page5-footer">
+              <span style={{ fontFamily: "'Exo 2', sans-serif", fontWeight: 900, fontSize: '11px', color: 'var(--amber)', letterSpacing: '3px' }}>QUICKPETRO</span>
+              <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>
+                <a href="https://www.quickpetro.in" target="_blank" rel="noopener noreferrer">www.quickpetro.in</a> 
+                {"\u00A0"}·{"\u00A0"} 
+                <a href="tel:+919825044917">+91 9825044917</a> 
+                {"\u00A0"}·{"\u00A0"} 
+                <a href="https://maps.google.com/?q=GIDC+Vatva,+Ahmedabad+382445" target="_blank" rel="noopener noreferrer">GIDC Vatva, Ahmedabad – 382445</a>
               </span>
-              <span className="engineered-plus">+</span>
-              <span className="engineered-pill">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <path d="M4 12h3M17 12h3M12 4v3M12 17v3" />
-                  <circle cx="12" cy="12" r="5" />
-                </svg>
-                Radiators
-              </span>
             </div>
-
-            {/* Stats row */}
-            <div className="cover-stats">
-              <div>
-                <div className="stat-val" style={{ color: 'var(--amber)' }}>4</div>
-                <div className="stat-lbl">Contaminants<br />Eliminated</div>
-              </div>
-              <div>
-                <div className="stat-val" style={{ color: 'var(--teal-light)', fontSize: '22px' }}>–10 → 60°C</div>
-                <div className="stat-lbl">Operating<br />Range</div>
-              </div>
-              <div>
-                <div className="stat-val" style={{ color: 'var(--amber)' }}>{"<100 ppm"}</div>
-                <div className="stat-lbl">Moisture<br />Content</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="cover-footer">
-          <div className="contact-item">
-            <label>Address</label>
-            <span>
-              <a href="https://maps.google.com/?q=Pushkar+Industrial+Estate,+Phase-1,+GIDC,+Vatva,+Ahmedabad+382445,+Gujarat,+India" target="_blank" rel="noopener noreferrer">
-                Pushkar Industrial Estate, Phase-1, GIDC, Vatva, Ahmedabad – 382445, Gujarat, India
-              </a>
-            </span>
-          </div>
-          <div className="contact-item">
-            <label>Contact</label>
-            <span><a href="tel:+919825044917">+91 9825044917</a></span>
-          </div>
-          <div className="contact-item">
-            <label>Website</label>
-            <span><a href="https://www.quickpetro.in" target="_blank" rel="noopener noreferrer">www.quickpetro.in</a></span>
-          </div>
-        </div>
-
-        <div className="page-num">01 / 05</div>
-      </div>
-
-      {/* ======================== PAGE 2: OVERVIEW ======================== */}
-      <div className="page">
-        <div className="page-header-bar">
-          <span className="page-brand">QUICKPETRO</span>
-          <span className="page-product-label">LEGA-R — Product Overview</span>
-        </div>
-
-        <div className="section-header">
-          <div className="eyebrow">01 — Product Overview</div>
-          <div className="section-title">The Ultimate Dual-Action Solution<br />for <span>Thermal Efficiency</span></div>
-          <div className="title-underline"></div>
-        </div>
-
-        <div className="section-body">
-          <div className="intro-grid">
-            <div className="intro-text">
-              <strong>LEGA-R</strong> is a high-performance, dual-action system cleaner and flushing fluid specifically engineered to maintain and restore the peak efficiency of all types of Radiators and Heat Exchangers.<br /><br />
-              Formulated for demanding industrial environments, LEGA-R addresses the full spectrum of system contamination that degrades thermal performance over time — from new-build commissioning to scheduled lifecycle maintenance.
-            </div>
-            <div className="formula-card">
-              This advanced formula works quickly and aggressively to <strong>displace, dissolve, and completely flush</strong> out accumulated waste materials, leaving behind a pristine system perfectly prepared for a fresh charge of heat transfer fluid.
-            </div>
+            <div className="page-num" style={{ bottom: '24px' }}>05 / 05</div>
           </div>
 
-          <div className="elim-section-label">What LEGA-R Eliminates — & Why It Matters</div>
-
-          <div className="elim-grid">
-            <div className="elim-card">
-              <div className="elim-card-hexbg"></div>
-              <div className="elim-title"><div className="elim-icon">🔥</div>Carbon Deposits & Sludge</div>
-              <div className="elim-advantage">Restores peak heat transfer efficiency and prevents component wear. Sludge buildup is the primary cause of thermal degradation in closed-loop systems, reducing efficiency by up to 30%.</div>
-            </div>
-            <div className="elim-card">
-              <div className="elim-card-hexbg"></div>
-              <div className="elim-title"><div className="elim-icon">💧</div>Oxidized Residual Fluids</div>
-              <div className="elim-advantage">Prevents immediate cross-contamination and maximizes the lifespan of your fresh fluid charge. Oxidized remnants act as catalysts that accelerate new fluid degradation from day one.</div>
-            </div>
-            <div className="elim-card">
-              <div className="elim-card-hexbg"></div>
-              <div className="elim-title"><div className="elim-icon">⚡</div>Volatile Light Ends</div>
-              <div className="elim-advantage">Enhances plant safety by removing highly flammable, low-boiling hazards. Critical for facilities with open flame or high-temperature processes in proximity to the system.</div>
-            </div>
-            <div className="elim-card">
-              <div className="elim-card-hexbg"></div>
-              <div className="elim-title"><div className="elim-icon">🌊</div>Moisture & Debris</div>
-              <div className="elim-advantage">Prevents erratic system performance, internal fluid degradation, and mechanical pump damage. Even trace moisture causes cavitation, accelerated oxidation, and pump seal failure.</div>
-            </div>
-          </div>
         </div>
-
-        <div className="page-num">02 / 05</div>
-      </div>
-
-      {/* ======================== PAGE 3: USAGE GUIDE ======================== */}
-      <div className="page">
-        <div className="page-header-bar">
-          <span className="page-brand">QUICKPETRO</span>
-          <span className="page-product-label">LEGA-R — Usage Guide</span>
-        </div>
-
-        <div className="section-header">
-          <div className="eyebrow">02 — Application Guide</div>
-          <div className="section-title">LEGA-R <span>Usage</span> Guide</div>
-          <div className="title-underline"></div>
-        </div>
-
-        <div className="section-body">
-          <div className="usage-two-col">
-            <div className="temp-card">
-              <div className="temp-label">Application & Operating Range</div>
-              <div className="temp-range">–10°C → 60°C</div>
-              <div className="temp-desc">Works best from ten below freezing up to warm operating conditions, keeping flow smooth even during cold starts. Maintains optimal viscosity across the full temperature envelope, ensuring effective cleaning regardless of ambient conditions.</div>
-            </div>
-            <div className="financial-card">
-              <div className="financial-title">↑ Financial & Operational Gains</div>
-              <div className="fin-item"><div className="fin-dot"></div>Longer fluid life & reduced top-up frequency</div>
-              <div className="fin-item"><div className="fin-dot"></div>Fewer unplanned service calls & engineer visits</div>
-              <div className="fin-item"><div className="fin-dot"></div>Steady, uninterrupted production throughput</div>
-              <div className="fin-item"><div className="fin-dot"></div>Reduced downtime from unexpected system failures</div>
-              <div className="fin-item"><div className="fin-dot"></div>Extended equipment service life & ROI</div>
-            </div>
-          </div>
-
-          <div className="lifecycle-label">System Lifecycle — Vulnerability Window & LEGA-R Application Points</div>
-          <div className="lifecycle-track">
-            <div className="lifecycle-steps">
-              <div className="lc-step">
-                <div className="lc-circle">
-                  <div className="lc-num">01</div>
-                </div>
-                <div className="lc-name">BUILD</div>
-                <div className="lc-desc">Assembly, welding & fabrication</div>
-              </div>
-              <div className="lc-step">
-                <div className="lc-circle" style={{ borderColor: 'var(--orange)' }}>
-                  <div className="lc-num" style={{ color: 'var(--orange)' }}>02</div>
-                </div>
-                <div className="lc-name">COMMISSION</div>
-                <div className="lc-desc">First fluid fill & pressure testing</div>
-              </div>
-              <div className="lc-step">
-                <div className="lc-circle" style={{ borderColor: 'var(--teal)' }}>
-                  <div className="lc-num" style={{ color: 'var(--teal-light)' }}>03</div>
-                </div>
-                <div className="lc-name">OPERATE</div>
-                <div className="lc-desc">Thermal transfer & steady production</div>
-              </div>
-              <div className="lc-step">
-                <div className="lc-circle" style={{ borderColor: 'var(--teal)' }}>
-                  <div className="lc-num" style={{ color: 'var(--teal-light)' }}>04</div>
-                </div>
-                <div className="lc-name">MAINTAIN</div>
-                <div className="lc-desc">Lifecycle servicing & fluid change</div>
-              </div>
-            </div>
-            <div className="vuln-gap">
-              <strong>⚠ The Vulnerability Gap:</strong> When the system sits empty between stages, leftover metals, dust, and storage residues accumulate. A single LEGA-R pre-charge flush completely eliminates this risk.
-            </div>
-          </div>
-
-          <div className="new-build-info">
-            <strong>New Build Applications:</strong> LEGA-R clears new builds of leftover metals, dust, and storage residues before the first fill — addressing the critical vulnerability gap that standard commissioning misses. High-efficiency shell-and-tube designs with intricate baffling and narrow tube pathways are prime traps for microscopic manufacturing debris, welding slag, and environmental dust.
-          </div>
-        </div>
-
-        <div className="page-num">03 / 05</div>
-      </div>
-
-      {/* ======================== PAGE 4: PROPERTIES ======================== */}
-      <div className="page">
-        <div className="page-header-bar">
-          <span className="page-brand">QUICKPETRO</span>
-          <span className="page-product-label">LEGA-R — Technical Data Sheet</span>
-        </div>
-
-        <div className="section-header">
-          <div className="eyebrow">03 — Technical Data</div>
-          <div className="section-title">Typical Physical &<br /><span>Chemical Properties</span></div>
-          <div className="title-underline"></div>
-        </div>
-
-        <div className="section-body">
-          <div className="prop-note">
-            The following matrix represents typical laboratory analysis data for LEGA-R System Cleaner and Flushing Fluid. These values serve as <strong>general operational guidelines</strong> based on current production and may be influenced by allowable production tolerances. Values are not specifications and should not be interpreted as guaranteed analyses for any specific lot.
-          </div>
-
-          <table className="prop-table">
-            <thead>
-              <tr>
-                <th>Parameter</th>
-                <th>Unit</th>
-                <th>Test Code (ASTM / ISO)</th>
-                <th>Result</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Appearance</td><td>N/A</td><td>N/A</td><td>Colorless transparent, no odour</td></tr>
-              <tr><td>Operating Range</td><td>°C (°F)</td><td>N/A</td><td>–10 to 60</td></tr>
-              <tr><td>Density @ 25°C</td><td>kg/m³</td><td>ASTM D4052</td><td>0.820 – 0.850</td></tr>
-              <tr><td>Kinematic Viscosity @ 40°C</td><td>mm²/s (cSt)</td><td>ASTM D445</td><td>1.0 – 6.0</td></tr>
-              <tr><td>Kinematic Viscosity @ 100°C</td><td>mm²/s (cSt)</td><td>ASTM D445</td><td>NTR</td></tr>
-              <tr><td>Flash Point (COC)</td><td>°C</td><td>ASTM D92</td><td>{"<20"}</td></tr>
-              <tr><td>Coefficient of Thermal Expansion</td><td>°C</td><td>NTR</td><td>0.00077 / °C</td></tr>
-              <tr><td>Autoignition Point</td><td>°C</td><td>ASTM E659</td><td>300</td></tr>
-              <tr><td>Pour Point</td><td>°C</td><td>ISO 3016</td><td>–12</td></tr>
-              <tr><td>Neutralization Nr. (acid) — TAN</td><td>mgKOH/g</td><td>ASTM D974</td><td>{"<0.05"}</td></tr>
-              <tr><td>Maximum Bulk Temperature</td><td>°C</td><td>NTR</td><td>45</td></tr>
-              <tr><td>Maximum Film Temperature</td><td>°C</td><td>NTR</td><td>50</td></tr>
-              <tr><td>Boiling Point at 1013 mbar</td><td>°C</td><td>NTR</td><td>60</td></tr>
-              <tr><td>Average Molecular Weight</td><td>—</td><td>NTR</td><td>400</td></tr>
-              <tr><td>Moisture Content</td><td>PPM</td><td>ASTM D6304</td><td>{"<100"}</td></tr>
-            </tbody>
-          </table>
-
-          <div className="abbrev-row">
-            <div><strong>COC</strong> — Cleveland Open Cup Test</div>
-            <div><strong>NTR</strong> — No Test Reported</div>
-          </div>
-        </div>
-
-        <div className="page-num">04 / 05</div>
-      </div>
-
-      {/* ======================== PAGE 5: OPERATIONAL SCOPE ======================== */}
-      <div className="page" style={{ paddingBottom: '60px' }}>
-        <div className="page-header-bar">
-          <span className="page-brand">QUICKPETRO</span>
-          <span className="page-product-label">LEGA-R — Operational Scope & Safety</span>
-        </div>
-
-        <div className="section-header">
-          <div className="eyebrow">04 — Safety & Operations</div>
-          <div className="section-title">Operational Scope &<br /><span>Safety Guidelines</span></div>
-          <div className="title-underline"></div>
-        </div>
-
-        <div className="section-body">
-          <div style={{ fontFamily: "'Exo 2', sans-serif", fontWeight: 700, fontSize: '12px', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--teal-light)', marginBottom: '14px' }}>
-            Site Readiness: Requirement of Party Scope
-          </div>
-
-          <div className="safety-grid">
-            <div className="safety-card client">
-              <div className="sc-icon">🔧</div>
-              <div className="sc-title">Client Site Scope</div>
-              <div className="sc-text">Provide a high-pressure <strong>air compressor (Minimum 150 CFM, 5 Kg/cm²)</strong> to completely purge residual fluid after cleaning is complete.</div>
-            </div>
-            <div className="safety-card warning">
-              <div className="sc-icon">⚠️</div>
-              <div className="sc-title">Critical Precautions</div>
-              <div className="sc-text">Vent all <strong>air and moisture completely before heating</strong>. Avoid copper components. Check pumps regularly to prevent air ingress and fluid degradation.</div>
-            </div>
-            <div className="safety-card disposal">
-              <div className="sc-icon">♻️</div>
-              <div className="sc-title">Fluid Disposal</div>
-              <div className="sc-text">Recycle via <strong>filtration or distillation</strong>, or burn for <strong>industrial energy recovery</strong>. Never discharge untreated fluid to drains or waterways.</div>
-            </div>
-          </div>
-
-          <div className="reaction-grid">
-            <div className="reaction-box">
-              <div className="rx-title">⚗  The Sludge Catalyst — Why Air Is Dangerous</div>
-              <div className="rx-formula">
-                <div className="rx-el">
-                  <div className="rx-el-icon">🌡️</div>
-                  <div className="rx-el-name">Hot Oil</div>
-                </div>
-                <div className="rx-op">+</div>
-                <div className="rx-el">
-                  <div className="rx-el-icon" style={{ fontSize: '14px' }}>O₂</div>
-                  <div className="rx-el-name">Air Exposure</div>
-                </div>
-                <div className="rx-op">=</div>
-                <div className="rx-el">
-                  <div className="rx-el-icon">⚙️</div>
-                  <div className="rx-el-name">Fluid Thickening & Sludge</div>
-                </div>
-              </div>
-              <div className="rx-result">
-                <div className="rx-result-icon">🔴</div>
-                <div className="rx-result-text"><strong>Risk:</strong> Hot oil oxidizes rapidly on contact with air, causing fatal fluid thickening and system blockage.</div>
-              </div>
-              <div className="rx-note">→ Purge all air completely before heating the system.</div>
-            </div>
-
-            <div className="reaction-box">
-              <div className="rx-title">⚗  The Chemical Accelerator — Why Copper Is Incompatible</div>
-              <div className="rx-formula">
-                <div className="rx-el">
-                  <div className="rx-el-icon">🔥</div>
-                  <div className="rx-el-name">High Heat</div>
-                </div>
-                <div className="rx-op">+</div>
-                <div className="rx-el">
-                  <div className="rx-el-icon" style={{ borderColor: 'rgba(180,140,60,0.4)', fontSize: '14px' }}>Cu</div>
-                  <div className="rx-el-name">Copper Alloys</div>
-                </div>
-                <div className="rx-op">=</div>
-                <div className="rx-el">
-                  <div className="rx-el-icon">💀</div>
-                  <div className="rx-el-name">Accelerated Oil Degradation</div>
-                </div>
-              </div>
-              <div className="rx-result">
-                <div className="rx-result-icon">🔴</div>
-                <div className="rx-result-text"><strong>Risk:</strong> Copper acts as a severe catalyst, compounding oil breakdown at operational temperatures.</div>
-              </div>
-              <div className="rx-note">→ Replace copper alloy components with steel or compatible alternatives.</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="page5-footer">
-          <span style={{ fontFamily: "'Exo 2', sans-serif", fontWeight: 900, fontSize: '11px', color: 'var(--amber)', letterSpacing: '3px' }}>QUICKPETRO</span>
-          <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>
-            <a href="https://www.quickpetro.in" target="_blank" rel="noopener noreferrer">www.quickpetro.in</a> 
-            {"\u00A0"}·{"\u00A0"} 
-            <a href="tel:+919825044917">+91 9825044917</a> 
-            {"\u00A0"}·{"\u00A0"} 
-            <a href="https://maps.google.com/?q=GIDC+Vatva,+Ahmedabad+382445" target="_blank" rel="noopener noreferrer">GIDC Vatva, Ahmedabad – 382445</a>
-          </span>
-        </div>
-
-        <div className="page-num" style={{ bottom: '24px' }}>05 / 05</div>
       </div>
     </div>
-  );
-};
-
-export default ProductCatalog;
+  )
+}

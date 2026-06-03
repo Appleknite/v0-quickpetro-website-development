@@ -6,7 +6,7 @@ import { X } from 'lucide-react'
 export default function CatalogModal({ isOpen, onClose }) {
   if (!isOpen) return null
 
-  // Injecting the exact CSS styles provided in the original design
+  // Fixed CSS delivery to introduce true modern fluid responsiveness on mobile viewports
   const cssStyles = `
     :root {
       --bg-deep: #070C18;
@@ -27,7 +27,7 @@ export default function CatalogModal({ isOpen, onClose }) {
 
     .catalog-wrapper {
       background: #050A14;
-      padding: 20px;
+      padding: 16px;
       min-height: 100vh;
       color: var(--text-primary);
       font-family: 'Nunito Sans', sans-serif;
@@ -44,27 +44,20 @@ export default function CatalogModal({ isOpen, onClose }) {
     .page {
       width: 100%;
       max-width: 794px;
-      min-height: 1123px;
-      margin: 0 auto 48px;
+      min-height: auto;
+      margin: 0 auto 32px;
       position: relative;
       overflow: hidden;
       background: var(--bg-primary);
       box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5);
-      transform-origin: top center;
+      border-radius: 8px;
     }
 
-    @media (max-width: 839px) {
+    @media (min-width: 840px) {
       .page {
-        transform: scale(max(0.8, 100vw / 920px));
-        margin-bottom: 24px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .page {
-        transform: scale(max(0.65, 100vw / 1200px));
-        min-height: auto;
-        margin-bottom: 16px;
+        min-height: 1123px;
+        margin-bottom: 48px;
+        border-radius: 0;
       }
     }
 
@@ -80,8 +73,15 @@ export default function CatalogModal({ isOpen, onClose }) {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 56px 60px 40px;
-      min-height: 820px;
+      padding: 40px 24px;
+      min-height: auto;
+    }
+
+    @media (min-width: 640px) {
+      .cover-hero {
+        padding: 56px 60px 40px;
+        min-height: 820px;
+      }
     }
 
     .cover-hero::before {
@@ -112,7 +112,7 @@ export default function CatalogModal({ isOpen, onClose }) {
       font-family: 'Exo 2', sans-serif;
       font-weight: 900;
       font-size: 13px;
-      letter-spacing: 8px;
+      letter-spacing: 6px;
       text-transform: uppercase;
       color: var(--amber);
       margin-bottom: 6px;
@@ -120,10 +120,10 @@ export default function CatalogModal({ isOpen, onClose }) {
 
     .brand-tagline {
       font-size: 11px;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 44px;
+      margin-bottom: 32px;
     }
 
     .cover-divider {
@@ -136,9 +136,9 @@ export default function CatalogModal({ isOpen, onClose }) {
     .product-name {
       font-family: 'Exo 2', sans-serif;
       font-weight: 900;
-      font-size: 118px;
-      line-height: 0.88;
-      letter-spacing: -5px;
+      font-size: 54px;
+      line-height: 0.9;
+      letter-spacing: -2px;
       background: linear-gradient(135deg, #F59E0B 0%, #FCD34D 45%, #F97316 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -146,28 +146,53 @@ export default function CatalogModal({ isOpen, onClose }) {
       margin-bottom: 12px;
     }
 
+    @media (min-width: 640px) {
+      .product-name {
+        font-size: 118px;
+        letter-spacing: -5px;
+      }
+    }
+
     .product-subtitle {
       font-family: 'Exo 2', sans-serif;
       font-weight: 600;
-      font-size: 21px;
-      letter-spacing: 2px;
+      font-size: 18px;
+      letter-spacing: 1px;
       color: var(--text-secondary);
-      margin-bottom: 46px;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 640px) {
+      .product-subtitle {
+        font-size: 21px;
+        letter-spacing: 2px;
+        margin-bottom: 46px;
+      }
     }
 
     .engineered-for {
       display: flex;
       align-items: center;
-      gap: 20px;
-      margin-bottom: 52px;
+      gap: 12px;
+      margin-bottom: 40px;
       flex-wrap: wrap;
     }
 
     .engineered-label {
       font-size: 10px;
-      letter-spacing: 4px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--text-muted);
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    @media (min-width: 640px) {
+      .engineered-label {
+        width: auto;
+        letter-spacing: 4px;
+        margin-bottom: 0;
+      }
     }
 
     .engineered-pill {
@@ -177,41 +202,48 @@ export default function CatalogModal({ isOpen, onClose }) {
       background: rgba(245,158,11,0.10);
       border: 1px solid var(--border-amber);
       border-radius: 4px;
-      padding: 9px 18px;
+      padding: 8px 14px;
       font-family: 'Exo 2', sans-serif;
       font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 2px;
+      font-size: 12px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--amber-light);
     }
 
     .engineered-plus {
-      font-size: 20px;
+      font-size: 16px;
       color: var(--text-muted);
     }
 
     .cover-stats {
       display: grid;
-      grid-template-columns: repeat(3, auto);
-      gap: 36px;
+      grid-template-columns: 1fr;
+      gap: 20px;
       max-width: 500px;
+    }
+
+    @media (min-width: 480px) {
+      .cover-stats {
+        grid-template-columns: repeat(3, auto);
+        gap: 24px;
+      }
     }
 
     .stat-val {
       font-family: 'Exo 2', sans-serif;
       font-weight: 900;
-      font-size: 30px;
+      font-size: 26px;
       line-height: 1;
       margin-bottom: 4px;
     }
 
     .stat-lbl {
       font-size: 9px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       color: var(--text-muted);
       text-transform: uppercase;
-      line-height: 1.4;
+      line-height: 1.3;
     }
 
     .watermark-svg {
@@ -220,24 +252,33 @@ export default function CatalogModal({ isOpen, onClose }) {
       bottom: 70px;
       width: 380px;
       height: 300px;
-      opacity: 0.04;
+      opacity: 0.02;
       z-index: 0;
+      pointer-events: none;
     }
 
     .cover-footer {
       background: rgba(245,158,11,0.06);
       border-top: 1px solid var(--border-amber);
-      padding: 22px 60px;
+      padding: 24px;
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: 1fr;
+      gap: 16px;
       position: relative;
       z-index: 1;
     }
 
+    @media (min-width: 640px) {
+      .cover-footer {
+        padding: 22px 60px;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 24px;
+      }
+    }
+
     .contact-item label {
       font-size: 9px;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--text-muted);
       display: block;
@@ -249,15 +290,26 @@ export default function CatalogModal({ isOpen, onClose }) {
       font-size: 12px;
       font-weight: 700;
       color: var(--amber);
+      word-break: break-word;
     }
 
     .page-header-bar {
       background: var(--bg-deep);
       border-bottom: 1px solid var(--border);
-      padding: 13px 60px;
+      padding: 12px 24px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 640px) {
+      .page-header-bar {
+        padding: 13px 60px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
 
     .page-brand {
@@ -270,29 +322,42 @@ export default function CatalogModal({ isOpen, onClose }) {
 
     .page-product-label {
       font-size: 10px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       color: var(--text-muted);
       text-transform: uppercase;
     }
 
     .section-header {
-      padding: 40px 60px 28px;
+      padding: 24px 24px 16px;
+    }
+
+    @media (min-width: 640px) {
+      .section-header {
+        padding: 40px 60px 28px;
+      }
     }
 
     .eyebrow {
       font-size: 10px;
-      letter-spacing: 5px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--amber);
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     .section-title {
       font-family: 'Exo 2', sans-serif;
       font-weight: 800;
-      font-size: 36px;
-      line-height: 1.08;
+      font-size: 24px;
+      line-height: 1.2;
       color: var(--text-primary);
+    }
+
+    @media (min-width: 640px) {
+      .section-title {
+        font-size: 36px;
+        line-height: 1.08;
+      }
     }
 
     .section-title span { color: var(--amber); }
@@ -301,34 +366,57 @@ export default function CatalogModal({ isOpen, onClose }) {
       width: 80px;
       height: 3px;
       background: linear-gradient(90deg, var(--amber), var(--teal));
-      margin-top: 14px;
+      margin-top: 10px;
       border-radius: 2px;
     }
 
     .section-body {
-      padding: 0 60px 52px;
+      padding: 0 24px 40px;
+    }
+
+    @media (min-width: 640px) {
+      .section-body {
+        padding: 0 60px 52px;
+      }
     }
 
     .page-num {
-      position: absolute;
-      bottom: 20px;
-      right: 30px;
+      position: block;
+      text-align: right;
+      padding: 0 24px 16px;
       font-size: 10px;
       color: var(--text-muted);
       letter-spacing: 2px;
       font-family: 'Exo 2', sans-serif;
     }
 
+    @media (min-width: 840px) {
+      .page-num {
+        position: absolute;
+        bottom: 20px;
+        right: 30px;
+        padding: 0;
+      }
+    }
+
     .intro-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-bottom: 36px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .intro-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        margin-bottom: 36px;
+      }
     }
 
     .intro-text {
       font-size: 13.5px;
-      line-height: 1.85;
+      line-height: 1.8;
       color: var(--text-secondary);
     }
     .intro-text strong { color: var(--amber); }
@@ -338,29 +426,19 @@ export default function CatalogModal({ isOpen, onClose }) {
       border: 1px solid var(--border);
       border-left: 3px solid var(--teal);
       border-radius: 8px;
-      padding: 22px;
+      padding: 18px;
       font-size: 13px;
       color: var(--text-secondary);
-      line-height: 1.8;
+      line-height: 1.7;
       position: relative;
       overflow: hidden;
     }
-
-    .formula-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 80% at 110% 110%, rgba(13,148,136,0.09) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .formula-card strong { color: var(--teal-light); }
 
     .elim-section-label {
       font-family: 'Exo 2', sans-serif;
       font-weight: 700;
       font-size: 11px;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 14px;
@@ -370,15 +448,21 @@ export default function CatalogModal({ isOpen, onClose }) {
 
     .elim-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 12px;
+    }
+
+    @media (min-width: 580px) {
+      .elim-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     .elim-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 20px 22px;
+      padding: 16px 18px;
       position: relative;
       overflow: hidden;
     }
@@ -389,13 +473,6 @@ export default function CatalogModal({ isOpen, onClose }) {
       top: 0; left: 0; right: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--amber), transparent);
-    }
-
-    .elim-card-hexbg {
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 0l28 17v33L28 66zm0-5.7L52 47.7V19.3L28 5.7 4 19.3v28.4L28 60.3z' fill='none' stroke='%23F59E0B' stroke-width='0.4' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
     }
 
     .elim-title {
@@ -426,80 +503,70 @@ export default function CatalogModal({ isOpen, onClose }) {
     .elim-advantage {
       font-size: 12px;
       color: var(--text-secondary);
-      line-height: 1.65;
-      position: relative;
-      z-index: 1;
+      line-height: 1.6;
     }
 
     .usage-two-col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-bottom: 28px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 640px) {
+      .usage-two-col {
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        margin-bottom: 28px;
+      }
     }
 
     .temp-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 24px;
+      padding: 20px;
       position: relative;
       overflow: hidden;
     }
 
-    .temp-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at -10% 110%, rgba(239,108,0,0.15) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .temp-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 0l28 17v33L28 66zm0-5.7L52 47.7V19.3L28 5.7 4 19.3v28.4L28 60.3z' fill='none' stroke='%23EF6C00' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E");
-      pointer-events: none;
-    }
-
     .temp-label {
       font-size: 9px;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
     }
 
     .temp-range {
       font-family: 'Exo 2', sans-serif;
       font-weight: 900;
-      font-size: 42px;
+      font-size: 32px;
       background: linear-gradient(135deg, var(--orange), var(--amber));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       line-height: 1;
       margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
+    }
+
+    @media (min-width: 480px) {
+      .temp-range {
+        font-size: 42px;
+      }
     }
 
     .temp-desc {
       font-size: 12px;
       color: var(--text-secondary);
-      line-height: 1.65;
-      position: relative;
-      z-index: 1;
+      line-height: 1.6;
     }
 
     .financial-card {
       background: linear-gradient(135deg, rgba(13,148,136,0.14) 0%, rgba(13,148,136,0.04) 100%);
       border: 1px solid rgba(13,148,136,0.28);
       border-radius: 10px;
-      padding: 24px;
+      padding: 20px;
     }
 
     .financial-title {
@@ -518,7 +585,7 @@ export default function CatalogModal({ isOpen, onClose }) {
       margin-bottom: 9px;
       font-size: 12px;
       color: var(--text-secondary);
-      line-height: 1.5;
+      line-height: 1.4;
     }
 
     .fin-dot {
@@ -527,12 +594,12 @@ export default function CatalogModal({ isOpen, onClose }) {
       border-radius: 50%;
       background: var(--teal);
       flex-shrink: 0;
-      margin-top: 6px;
+      margin-top: 5px;
     }
 
     .lifecycle-label {
       font-size: 9px;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--text-muted);
       text-align: center;
@@ -543,36 +610,36 @@ export default function CatalogModal({ isOpen, onClose }) {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 30px 36px 24px;
+      padding: 20px;
       position: relative;
       overflow: hidden;
       margin-bottom: 16px;
     }
 
-    .lifecycle-track::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 0l28 17v33L28 66zm0-5.7L52 47.7V19.3L28 5.7 4 19.3v28.4L28 60.3z' fill='none' stroke='%230D9488' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E");
-      pointer-events: none;
+    @media (min-width: 640px) {
+      .lifecycle-track {
+        padding: 30px 36px 24px;
+      }
     }
 
     .lifecycle-steps {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1fr;
+      gap: 20px;
       position: relative;
       z-index: 1;
     }
 
-    .lifecycle-steps::before {
-      content: '';
-      position: absolute;
-      top: 31px;
-      left: 12.5%;
-      right: 12.5%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--amber) 0%, var(--teal) 100%);
-      z-index: 0;
+    @media (min-width: 480px) {
+      .lifecycle-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 720px) {
+      .lifecycle-steps {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
 
     .lc-step {
@@ -582,22 +649,21 @@ export default function CatalogModal({ isOpen, onClose }) {
     }
 
     .lc-circle {
-      width: 62px;
-      height: 62px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
       border: 2px solid var(--amber);
       background: var(--bg-deep);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 12px;
+      margin: 0 auto 10px;
     }
 
     .lc-num {
       font-family: 'Exo 2', sans-serif;
       font-weight: 900;
       font-size: 11px;
-      letter-spacing: 1px;
       color: var(--amber);
     }
 
@@ -606,59 +672,62 @@ export default function CatalogModal({ isOpen, onClose }) {
       font-weight: 800;
       font-size: 12px;
       color: var(--text-primary);
-      margin-bottom: 5px;
-      letter-spacing: 0.5px;
+      margin-bottom: 4px;
     }
 
     .lc-desc {
-      font-size: 10.5px;
+      font-size: 11px;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.3;
     }
 
     .vuln-gap {
       background: rgba(239,68,68,0.07);
       border: 1px solid rgba(239,68,68,0.18);
       border-radius: 6px;
-      padding: 10px 16px;
-      margin-top: 22px;
+      padding: 12px;
+      margin-top: 20px;
       font-size: 11px;
       color: #FCA5A5;
       text-align: center;
       position: relative;
       z-index: 1;
     }
-    .vuln-gap strong { color: #F87171; }
 
     .new-build-info {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-left: 3px solid var(--amber);
       border-radius: 8px;
-      padding: 18px 22px;
+      padding: 16px 18px;
       font-size: 12px;
       color: var(--text-secondary);
-      line-height: 1.75;
+      line-height: 1.65;
     }
-    .new-build-info strong { color: var(--amber-light); }
 
     .prop-note {
       background: rgba(13,148,136,0.07);
       border: 1px solid rgba(13,148,136,0.2);
       border-radius: 8px;
-      padding: 13px 18px;
+      padding: 12px 16px;
       font-size: 12px;
       color: var(--text-secondary);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       line-height: 1.6;
     }
-    .prop-note strong { color: var(--teal-light); }
+
+    .prop-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
 
     .prop-table {
       width: 100%;
       border-collapse: collapse;
-      border-radius: 10px;
-      overflow: hidden;
+      min-width: 500px;
     }
 
     .prop-table th {
@@ -667,15 +736,15 @@ export default function CatalogModal({ isOpen, onClose }) {
       font-family: 'Exo 2', sans-serif;
       font-weight: 700;
       font-size: 10px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      padding: 13px 18px;
+      padding: 12px 14px;
       text-align: left;
     }
     .prop-table th:last-child { text-align: right; }
 
     .prop-table td {
-      padding: 11px 18px;
+      padding: 10px 14px;
       font-size: 12px;
       color: var(--text-secondary);
       border-bottom: 1px solid var(--border);
@@ -686,143 +755,107 @@ export default function CatalogModal({ isOpen, onClose }) {
       font-weight: 700;
       color: var(--amber-light);
     }
-    .prop-table td:nth-child(2),
-    .prop-table td:nth-child(3) {
-      color: var(--text-muted);
-      font-size: 11px;
-    }
-    .prop-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
-
-    .prop-table tbody tr:first-child td {
-      background: rgba(13,148,136,0.10);
-      color: var(--teal-light);
-    }
-    .prop-table tbody tr:first-child td:last-child { color: var(--teal-light); }
 
     .abbrev-row {
       display: flex;
-      gap: 32px;
-      margin-top: 18px;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 14px;
       font-size: 11px;
       color: var(--text-muted);
     }
-    .abbrev-row strong { color: var(--amber); }
 
     .safety-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 14px;
-      margin-bottom: 26px;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 600px) {
+      .safety-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     .safety-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 20px;
+      padding: 16px;
       position: relative;
       overflow: hidden;
     }
-    .safety-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 0l28 17v33L28 66zm0-5.7L52 47.7V19.3L28 5.7 4 19.3v28.4L28 60.3z' fill='none' stroke='%23F59E0B' stroke-width='0.4' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-    }
+
     .safety-card.client  { border-top: 2px solid var(--teal); }
     .safety-card.warning { border-top: 2px solid #F87171; }
     .safety-card.disposal{ border-top: 2px solid var(--amber); }
 
     .sc-icon {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
+      font-size: 16px;
+      margin-bottom: 8px;
     }
-    .client  .sc-icon { background: rgba(13,148,136,0.14); }
-    .warning .sc-icon { background: rgba(239,68,68,0.14); }
-    .disposal .sc-icon { background: rgba(245,158,11,0.14); }
 
     .sc-title {
       font-family: 'Exo 2', sans-serif;
       font-weight: 700;
       font-size: 11.5px;
-      letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 8px;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 6px;
     }
-    .client  .sc-title { color: var(--teal-light); }
-    .warning .sc-title { color: #FCA5A5; }
-    .disposal .sc-title { color: var(--amber-light); }
 
     .sc-text {
       font-size: 11.5px;
       color: var(--text-secondary);
-      line-height: 1.65;
-      position: relative;
-      z-index: 1;
+      line-height: 1.5;
     }
-    .sc-text strong { color: var(--text-primary); }
 
     .reaction-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 14px;
+    }
+
+    @media (min-width: 680px) {
+      .reaction-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     .reaction-box {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 20px;
+      padding: 16px;
       overflow: hidden;
       position: relative;
-    }
-    .reaction-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V17L28 0l28 17v33L28 66zm0-5.7L52 47.7V19.3L28 5.7 4 19.3v28.4L28 60.3z' fill='none' stroke='%23F59E0B' stroke-width='0.4' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
     }
 
     .rx-title {
       font-size: 9px;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 12px;
     }
 
     .rx-formula {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
+      gap: 4px;
       margin-bottom: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .rx-el {
-      text-align: center;
-      flex: 1;
     }
 
     .rx-el-icon {
-      width: 46px;
-      height: 46px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       border: 1.5px solid var(--border-amber);
       background: rgba(245,158,11,0.07);
@@ -830,7 +863,7 @@ export default function CatalogModal({ isOpen, onClose }) {
       align-items: center;
       justify-content: center;
       margin: 0 auto 6px;
-      font-size: 20px;
+      font-size: 16px;
       font-family: 'Exo 2', sans-serif;
       font-weight: 900;
       color: var(--amber-light);
@@ -839,14 +872,14 @@ export default function CatalogModal({ isOpen, onClose }) {
     .rx-el-name {
       font-family: 'Exo 2', sans-serif;
       font-weight: 700;
-      font-size: 9.5px;
+      font-size: 9px;
       color: var(--text-secondary);
-      line-height: 1.3;
+      line-height: 1.2;
     }
 
     .rx-op {
       font-family: 'Exo 2', sans-serif;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 900;
       color: var(--text-muted);
     }
@@ -854,36 +887,44 @@ export default function CatalogModal({ isOpen, onClose }) {
     .rx-result {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
       background: rgba(239,68,68,0.07);
       border: 1px solid rgba(239,68,68,0.15);
       border-radius: 6px;
-      padding: 10px 12px;
-      position: relative;
-      z-index: 1;
+      padding: 10px;
     }
-    .rx-result-icon { font-size: 18px; flex-shrink: 0; }
-    .rx-result-text { font-size: 11px; color: #FCA5A5; line-height: 1.5; }
-    .rx-result-text strong { color: #F87171; }
+    .rx-result-icon { font-size: 14px; flex-shrink: 0; }
+    .rx-result-text { font-size: 11px; color: #FCA5A5; line-height: 1.4; }
 
     .rx-note {
       font-size: 10px;
       color: var(--text-muted);
       margin-top: 8px;
       font-style: italic;
-      position: relative;
-      z-index: 1;
     }
 
     .page5-footer {
       background: rgba(245,158,11,0.05);
       border-top: 1px solid var(--border-amber);
-      padding: 15px 60px;
+      padding: 16px 24px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 8px;
       align-items: center;
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
+      text-align: center;
+      position: block;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 840px) {
+      .page5-footer {
+        padding: 15px 60px;
+        flex-direction: row;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        margin-top: 0;
+      }
     }
 
     .cover-footer a, 
@@ -900,35 +941,33 @@ export default function CatalogModal({ isOpen, onClose }) {
 
     @media print {
       .catalog-wrapper { padding: 0; background: var(--bg-deep); }
-      .page { margin: 0; page-break-after: always; width: 100%; }
+      .page { margin: 0; page-break-after: always; width: 100%; min-height: 1123px; }
     }
   `
 
   return (
     <div className="fixed inset-0 z-50 bg-black/75 flex overflow-y-auto">
-      {/* Scoped CSS delivery inside the modal wrapper */}
       <style dangerouslySetInnerHTML={{ __html: cssStyles }} />
       
-      {/* Modal Container */}
-      <div className="relative w-full max-w-[850px] mx-auto bg-[#050A14] shadow-2xl border border-gray-800 flex flex-col">
+      <div className="relative w-full max-w-[850px] mx-auto bg-[#050A14] shadow-2xl md:border md:border-gray-800 flex flex-col my-0 md:my-8 rounded-none md:rounded-lg">
         
-        {/* Sticky Close Button Layer */}
-        <div className="sticky top-0 z-50 flex justify-end mb-2 bg-[#050A14] border-b border-gray-800 p-4">
+        {/* Sticky Close Button */}
+        <div className="sticky top-0 z-50 flex justify-end bg-[#050A14]/95 backdrop-blur-md border-b border-gray-800 p-4">
           <button 
             onClick={onClose}
-            className="p-2 bg-gray-900/90 hover:bg-red-950 text-gray-400 hover:text-red-400 border border-gray-800 rounded-full transition-all shadow-md backdrop-blur cursor-pointer flex-shrink-0"
+            className="p-2 bg-gray-900/90 hover:bg-red-950 text-gray-400 hover:text-red-400 border border-gray-800 rounded-full transition-all shadow-md cursor-pointer flex-shrink-0"
             title="Close Catalog"
           >
             <X size={20} />
           </button>
         </div>
 
-        {/* --- DIGITAL CATALOG CONTENT CONTENT --- */}
-        <div className="catalog-wrapper flex-1 overflow-y-auto">
+        {/* --- DIGITAL CATALOG CONTENT --- */}
+        <div className="catalog-wrapper flex-1">
 
           {/* ======================== PAGE 1: COVER ======================== */}
           <div className="page cover">
-            <svg className="watermark-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="watermark-svg hidden sm:block" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="50" y="90" width="320" height="140" rx="14" stroke="#F59E0B" strokeWidth="3.5" />
               <rect x="20" y="112" width="380" height="22" rx="5" stroke="#F59E0B" strokeWidth="2" />
               <rect x="20" y="186" width="380" height="22" rx="5" stroke="#F59E0B" strokeWidth="2" />
@@ -963,7 +1002,7 @@ export default function CatalogModal({ isOpen, onClose }) {
                 <div className="engineered-for">
                   <span className="engineered-label">Engineered for</span>
                   <span className="engineered-pill">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="mr-1 inline">
                       <rect x="2" y="7" width="20" height="14" rx="3" />
                       <path d="M16 7V5a4 4 0 00-8 0v2" />
                       <line x1="12" y1="12" x2="12" y2="16" />
@@ -972,7 +1011,7 @@ export default function CatalogModal({ isOpen, onClose }) {
                   </span>
                   <span className="engineered-plus">+</span>
                   <span className="engineered-pill">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="mr-1 inline">
                       <path d="M4 12h3M17 12h3M12 4v3M12 17v3" />
                       <circle cx="12" cy="12" r="5" />
                     </svg>
@@ -986,7 +1025,7 @@ export default function CatalogModal({ isOpen, onClose }) {
                     <div className="stat-lbl">Contaminants<br />Eliminated</div>
                   </div>
                   <div>
-                    <div className="stat-val" style={{ color: 'var(--teal-light)', fontSize: '22px' }}>–10 → 60°C</div>
+                    <div className="stat-val" style={{ color: 'var(--teal-light)', fontSize: '20px' }}>–10 → 60°C</div>
                     <div className="stat-lbl">Operating<br />Range</div>
                   </div>
                   <div>
@@ -1046,22 +1085,18 @@ export default function CatalogModal({ isOpen, onClose }) {
 
               <div className="elim-grid">
                 <div className="elim-card">
-                  <div className="elim-card-hexbg"></div>
                   <div className="elim-title"><div className="elim-icon">🔥</div>Carbon Deposits & Sludge</div>
                   <div className="elim-advantage">Restores peak heat transfer efficiency and prevents component wear. Sludge buildup is the primary cause of thermal degradation in closed-loop systems, reducing efficiency by up to 30%.</div>
                 </div>
                 <div className="elim-card">
-                  <div className="elim-card-hexbg"></div>
                   <div className="elim-title"><div className="elim-icon">💧</div>Oxidized Residual Fluids</div>
                   <div className="elim-advantage">Prevents immediate cross-contamination and maximizes the lifespan of your fresh fluid charge. Oxidized remnants act as catalysts that accelerate new fluid degradation from day one.</div>
                 </div>
                 <div className="elim-card">
-                  <div className="elim-card-hexbg"></div>
                   <div className="elim-title"><div className="elim-icon">⚡</div>Volatile Light Ends</div>
                   <div className="elim-advantage">Enhances plant safety by removing highly flammable, low-boiling hazards. Critical for facilities with open flame or high-temperature processes in proximity to the system.</div>
                 </div>
                 <div className="elim-card">
-                  <div className="elim-card-hexbg"></div>
                   <div className="elim-title"><div className="elim-icon">🌊</div>Moisture & Debris</div>
                   <div className="elim-advantage">Prevents erratic system performance, internal fluid degradation, and mechanical pump damage. Even trace moisture causes cavitation, accelerated oxidation, and pump seal failure.</div>
                 </div>
@@ -1159,36 +1194,38 @@ export default function CatalogModal({ isOpen, onClose }) {
 
             <div className="section-body">
               <div className="prop-note">
-                The following matrix represents typical laboratory analysis data for LEGA-R System Cleaner and Flushing Fluid. These values serve as <strong>general operational guidelines</strong> based on current production and may be influenced by allowable production tolerances. Values are not specifications and should not be interpreted as guaranteed analyses for any specific lot.
+                The following matrix represents typical laboratory analysis data for LEGA-R System Cleaner and Flushing Fluid. These values serve as <strong>general operational guidelines</strong> based on current production.
               </div>
 
-              <table className="prop-table">
-                <thead>
-                  <tr>
-                    <th>Parameter</th>
-                    <th>Unit</th>
-                    <th>Test Code (ASTM / ISO)</th>
-                    <th>Result</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>Appearance</td><td>N/A</td><td>N/A</td><td>Colorless transparent, no odour</td></tr>
-                  <tr><td>Operating Range</td><td>°C (°F)</td><td>N/A</td><td>–10 to 60</td></tr>
-                  <tr><td>Density @ 25°C</td><td>kg/m³</td><td>ASTM D4052</td><td>0.820 – 0.850</td></tr>
-                  <tr><td>Kinematic Viscosity @ 40°C</td><td>mm²/s (cSt)</td><td>ASTM D445</td><td>1.0 – 6.0</td></tr>
-                  <tr><td>Kinematic Viscosity @ 100°C</td><td>mm²/s (cSt)</td><td>ASTM D445</td><td>NTR</td></tr>
-                  <tr><td>Flash Point (COC)</td><td>°C</td><td>ASTM D92</td><td>{"<20"}</td></tr>
-                  <tr><td>Coefficient of Thermal Expansion</td><td>°C</td><td>NTR</td><td>0.00077 / °C</td></tr>
-                  <tr><td>Autoignition Point</td><td>°C</td><td>ASTM E659</td><td>300</td></tr>
-                  <tr><td>Pour Point</td><td>°C</td><td>ISO 3016</td><td>–12</td></tr>
-                  <tr><td>Neutralization Nr. (acid) — TAN</td><td>mgKOH/g</td><td>ASTM D974</td><td>{"<0.05"}</td></tr>
-                  <tr><td>Maximum Bulk Temperature</td><td>°C</td><td>NTR</td><td>45</td></tr>
-                  <tr><td>Maximum Film Temperature</td><td>°C</td><td>NTR</td><td>50</td></tr>
-                  <tr><td>Boiling Point at 1013 mbar</td><td>°C</td><td>NTR</td><td>60</td></tr>
-                  <tr><td>Average Molecular Weight</td><td>—</td><td>NTR</td><td>400</td></tr>
-                  <tr><td>Moisture Content</td><td>PPM</td><td>ASTM D6304</td><td>{"<100"}</td></tr>
-                </tbody>
-              </table>
+              <div className="prop-table-wrapper">
+                <table className="prop-table">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Unit</th>
+                      <th>Test Code (ASTM / ISO)</th>
+                      <th>Result</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Appearance</td><td>N/A</td><td>N/A</td><td>Colorless transparent, no odour</td></tr>
+                    <tr><td>Operating Range</td><td>°C (°F)</td><td>N/A</td><td>–10 to 60</td></tr>
+                    <tr><td>Density @ 25°C</td><td>kg/m³</td><td>ASTM D4052</td><td>0.820 – 0.850</td></tr>
+                    <tr><td>Kinematic Viscosity @ 40°C</td><td>mm²/s (cSt)</td><td>ASTM D445</td><td>1.0 – 6.0</td></tr>
+                    <tr><td>Kinematic Viscosity @ 100°C</td><td>mm²/s (cSt)</td><td>ASTM D445</td><td>NTR</td></tr>
+                    <tr><td>Flash Point (COC)</td><td>°C</td><td>ASTM D92</td><td>{"<20"}</td></tr>
+                    <tr><td>Coefficient of Thermal Expansion</td><td>°C</td><td>NTR</td><td>0.00077 / °C</td></tr>
+                    <tr><td>Autoignition Point</td><td>°C</td><td>ASTM E659</td><td>300</td></tr>
+                    <tr><td>Pour Point</td><td>°C</td><td>ISO 3016</td><td>–12</td></tr>
+                    <tr><td>Neutralization Nr. (acid) — TAN</td><td>mgKOH/g</td><td>ASTM D974</td><td>{"<0.05"}</td></tr>
+                    <tr><td>Maximum Bulk Temperature</td><td>°C</td><td>NTR</td><td>45</td></tr>
+                    <tr><td>Maximum Film Temperature</td><td>°C</td><td>NTR</td><td>50</td></tr>
+                    <tr><td>Boiling Point at 1013 mbar</td><td>°C</td><td>NTR</td><td>60</td></tr>
+                    <tr><td>Average Molecular Weight</td><td>—</td><td>NTR</td><td>400</td></tr>
+                    <tr><td>Moisture Content</td><td>PPM</td><td>ASTM D6304</td><td>{"<100"}</td></tr>
+                  </tbody>
+                </table>
+              </div>
 
               <div className="abbrev-row">
                 <div><strong>COC</strong> — Cleveland Open Cup Test</div>
@@ -1199,7 +1236,7 @@ export default function CatalogModal({ isOpen, onClose }) {
           </div>
 
           {/* ======================== PAGE 5: OPERATIONAL SCOPE ======================== */}
-          <div className="page" style={{ paddingBottom: '60px' }}>
+          <div className="page" style={{ paddingBottom: '20px' }}>
             <div className="page-header-bar">
               <span className="page-brand">QUICKPETRO</span>
               <span className="page-product-label">LEGA-R — Operational Scope & Safety</span>
@@ -1212,7 +1249,7 @@ export default function CatalogModal({ isOpen, onClose }) {
             </div>
 
             <div className="section-body">
-              <div style={{ fontFamily: "'Exo 2', sans-serif", fontWeight: 700, fontSize: '12px', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--teal-light)', marginBottom: '14px' }}>
+              <div style={{ fontFamily: "'Exo 2', sans-serif", fontWeight: 700, fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--teal-light)', marginBottom: '14px' }}>
                 Site Readiness: Requirement of Party Scope
               </div>
 
@@ -1246,7 +1283,7 @@ export default function CatalogModal({ isOpen, onClose }) {
                     <div className="rx-el">
                       <div className="rx-el-icon" style={{ fontSize: '14px' }}>O₂</div>
                       <div className="rx-el-name">Air Exposure</div>
-                </div>
+                    </div>
                     <div className="rx-op">=</div>
                     <div className="rx-el">
                       <div className="rx-el-icon">⚙️</div>
@@ -1297,7 +1334,7 @@ export default function CatalogModal({ isOpen, onClose }) {
                 <a href="https://maps.google.com/?q=GIDC+Vatva,+Ahmedabad+382445" target="_blank" rel="noopener noreferrer">GIDC Vatva, Ahmedabad – 382445</a>
               </span>
             </div>
-            <div className="page-num" style={{ bottom: '24px' }}>05 / 05</div>
+            <div className="page-num">05 / 05</div>
           </div>
 
         </div>

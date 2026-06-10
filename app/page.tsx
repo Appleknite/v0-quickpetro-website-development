@@ -11,12 +11,17 @@ import Footer from './components/Footer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-primary pt-20 sm:pt-24">
+    <div 
+      className="min-h-screen flex flex-col overflow-x-hidden bg-primary pt-20 sm:pt-24"
+      style={{
+        '--header-height': '80px',
+      } as React.CSSProperties & { '--header-height': string }}
+    >
       <Header />
       <Hero />
       <ServiceNav />
       <main className="bg-surface flex flex-col">
-        <section id="filtration"><FiltrationSystem /></section>
+        <section id="filtration" className="pt-20 sm:pt-24"><FiltrationSystem /></section>
         <section id="cleaning"><ThermicFluidCleaning /></section>
         <section id="analysis"><FluidAnalysis /></section>
         <section id="support"><TechnicalSupport /></section>

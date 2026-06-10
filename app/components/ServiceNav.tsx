@@ -57,7 +57,7 @@ export default function ServiceNav() {
   }, [])
 
   return (
-    <nav className="sticky top-20 sm:top-24 z-40 bg-surface border-t border-gray-200 shadow-sm">
+    <nav className="fixed inset-x-0 z-40 bg-surface border-t border-gray-200 shadow-sm" style={{ top: 'var(--header-height, 48px)' }}>
       {/* Desktop */}
       <div className="hidden sm:flex">
         {sections.map(({ id, label }) => (

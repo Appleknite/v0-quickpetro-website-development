@@ -11,12 +11,7 @@ import Footer from './components/Footer'
 
 export default function Home() {
   return (
-    <div 
-      className="min-h-screen flex flex-col overflow-x-hidden bg-primary pt-20 sm:pt-24"
-      style={{
-        '--header-height': '80px',
-      } as React.CSSProperties & { '--header-height': string }}
-    >
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-primary pt-20 sm:pt-24">
       <Header />
       <Hero />
       <ServiceNav />

@@ -13,7 +13,9 @@ const sections = [
 export default function ServiceNav() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [active, setActive] = useState('filtration')
+  const [headerHeight, setHeaderHeight] = useState(0)
   const menuRef = useRef<HTMLDivElement>(null)
+  const navRef = useRef<HTMLNavElement>(null)
 
   const scrollTo = (id: string) => {
     // Get header + nav height for offset
@@ -28,6 +30,24 @@ export default function ServiceNav() {
     setMobileOpen(false)
   }
 
+  // Measure header height and update CSS variable
+  useEffect(() => {
+    const measureHeaderHeight = () => {
+      const header = document.querySelector('header')
+      const height = header?.offsetHeight ?? 0
+      setHeaderHeight(height)
+      // Also set as CSS variable for scroll-margin-top
+      document.documentElement.style.setProperty('--header-height', `${height}px`)
+    }
+
+    // Measure on mount
+    measureHeaderHeight()
+
+    // Re-measure on resize
+    window.addEventListener('resize', measureHeaderHeight)
+    return () => window.removeEventListener('resize', measureHeaderHeight)
+  }, [])
+
   // Close mobile menu on scroll
   useEffect(() => {
     const handleScroll = () => setMobileOpen(false)
@@ -37,9 +57,10 @@ export default function ServiceNav() {
 
   // Track active section on scroll
   useEffect(() => {
-    const header = document.querySelector('header')
+    if (headerHeight === 0) return // Wait until header height is measured
+
     const nav = document.querySelector('nav')
-    const offset = (header?.offsetHeight ?? 48) + (nav?.offsetHeight ?? 40) + 8
+    const offset = headerHeight + (nav?.offsetHeight ?? 0) + 8
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -54,10 +75,14 @@ export default function ServiceNav() {
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
-  }, [])
+  }, [headerHeight])
 
   return (
-    <nav className="sticky top-12 sm:top-14 z-40 bg-surface border-t border-gray-200 shadow-sm">
+    <nav 
+      ref={navRef}
+      className="sticky z-40 bg-surface border-t border-gray-200 shadow-sm"
+      style={{ top: `${headerHeight}px` }}
+    >
       {/* Desktop */}
       <div className="hidden sm:flex">
         {sections.map(({ id, label }) => (

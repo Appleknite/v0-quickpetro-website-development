@@ -52,5 +52,5 @@
 
 /* Anchor scroll offset: account for sticky header + nav */
 #filtration, #cleaning, #analysis, #support {
-  scroll-margin-top: 100px;
+  scroll-margin-top: calc(var(--header-height, 60px) + 50px);
 }

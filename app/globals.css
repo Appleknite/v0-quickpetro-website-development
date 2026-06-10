@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    --color-primary: #1F2937;
+    --color-secondary: #D97706;
+    --color-accent: #F59E0B;
+    --color-surface: #F8FAFC;
+    --color-body: #111827;
+  }
+
+  body {
+    background-color: rgb(248 250 252);
+    color: rgb(17 24 39);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@supports (color: rgb(from white r g b)) {
+  @layer utilities {
+    @keyframes none {}
+    .bg-primary {
+      background-color: #1F2937;
+    }
+    .bg-secondary {
+      background-color: #D97706;
+    }
+    .bg-accent {
+      background-color: #F59E0B;
+    }
+    .bg-surface {
+      background-color: #F8FAFC;
+    }
+    .bg-body {
+      background-color: #111827;
+    }
+    .text-accent {
+      color: #F59E0B;
+    }
+    .text-primary {
+      color: #1F2937;
+    }
+    .text-secondary {
+      color: #D97706;
+    }
+    .text-body {
+      color: #111827;
+    }
+  }
+}
+
+/* Anchor scroll offset: account for sticky header + nav */
+#filtration, #cleaning, #analysis, #support {
+  scroll-margin-top: 100px;
+}

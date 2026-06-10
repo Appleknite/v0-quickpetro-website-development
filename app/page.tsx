@@ -1,21 +1,26 @@
 'use client'
 
-import { useState } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import ServiceNav from './components/ServiceNav'
-import ServiceContent from './components/ServiceContent'
+import FiltrationSystem from './components/services/FiltrationSystem'
+import ThermicFluidCleaning from './components/services/ThermicFluidCleaning'
+import FluidAnalysis from './components/services/FluidAnalysis'
+import TechnicalSupport from './components/services/TechnicalSupport'
 import Footer from './components/Footer'
 
 export default function Home() {
-  const [activeService, setActiveService] = useState<'filtration' | 'cleaning' | 'analysis' | 'support'>('filtration')
-
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-primary pt-20 sm:pt-24">
       <Header />
       <Hero />
-      <ServiceNav activeService={activeService} onServiceChange={setActiveService as any} />
-      <ServiceContent activeService={activeService} />
+      <ServiceNav />
+      <main className="bg-surface flex flex-col">
+        <section id="filtration"><FiltrationSystem /></section>
+        <section id="cleaning"><ThermicFluidCleaning /></section>
+        <section id="analysis"><FluidAnalysis /></section>
+        <section id="support"><TechnicalSupport /></section>
+      </main>
       <Footer />
     </div>
   )

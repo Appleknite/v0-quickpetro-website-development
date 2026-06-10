@@ -1,78 +1,108 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
-import { ChevronRight } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { Menu, X } from 'lucide-react'
 
-interface ServiceNavProps {
-  activeService: string
-  onServiceChange: (service: string) => void
-}
-
-const services = [
+const sections = [
   { id: 'filtration', label: 'Filtration System' },
-  { id: 'cleaning', label: 'Thermic Fluid Cleaning' },
+  { id: 'cleaning', label: 'Thermic Fluid System Cleaning' },
   { id: 'analysis', label: 'Fluid Analysis' },
-  { id: 'support', label: 'Technical Support' },
+  { id: 'support', label: 'Get a Quote' },
 ]
 
-export default function ServiceNav({ activeService, onServiceChange }: ServiceNavProps) {
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollRight, setCanScrollRight] = useState(true)
+export default function ServiceNav() {
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [active, setActive] = useState('filtration')
+  const menuRef = useRef<HTMLDivElement>(null)
 
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current
-      // Gives a 5px buffer for rounding errors
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5)
+  const scrollTo = (id: string) => {
+    // Get header + nav height for offset
+    const header = document.querySelector('header')
+    const nav = document.querySelector('nav')
+    const offset = (header?.offsetHeight ?? 0) + (nav?.offsetHeight ?? 0)
+    const el = document.getElementById(id)
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - offset
+      window.scrollTo({ top, behavior: 'smooth' })
     }
+    setMobileOpen(false)
   }
 
+  // Close mobile menu on scroll
   useEffect(() => {
-    checkScroll()
-    const nav = scrollRef.current
-    if (nav) {
-      nav.addEventListener('scroll', checkScroll)
-      window.addEventListener('resize', checkScroll)
-      return () => {
-        nav.removeEventListener('scroll', checkScroll)
-        window.removeEventListener('resize', checkScroll)
-      }
-    }
+    const handleScroll = () => setMobileOpen(false)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Track active section on scroll
+  useEffect(() => {
+    const header = document.querySelector('header')
+    const nav = document.querySelector('nav')
+    const offset = (header?.offsetHeight ?? 48) + (nav?.offsetHeight ?? 40) + 8
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id)
+        })
+      },
+      { rootMargin: `-${offset}px 0px -60% 0px`, threshold: 0 }
+    )
+    sections.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
   }, [])
 
   return (
-    <div className="sticky top-0 z-50 relative bg-surface border-t border-gray-200">
-      <nav
-        ref={scrollRef}
-        /* 'scrollbar-none' hides native layout bars while maintaining full touch-swipe capabilities */
-        className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none touch-pan-x"
-        style={{ WebkitOverflowScrolling: 'touch' }}
-      >
-        {services.map((service) => {
-          const isActive = activeService === service.id
+    <nav className="sticky top-[48px] sm:top-[52px] z-40 bg-surface border-t border-gray-200 shadow-sm">
+      {/* Desktop */}
+      <div className="hidden sm:flex">
+        {sections.map(({ id, label }) => (
+          <button
+            key={id}
+            onClick={() => scrollTo(id)}
+            className={`flex-1 min-w-max text-xs uppercase tracking-wider font-medium py-3.5 px-4 border-b-2 cursor-pointer transition-all duration-150 whitespace-nowrap ${
+              active === id
+                ? 'text-accent border-b-accent bg-amber-50'
+                : 'text-body border-b-transparent hover:bg-amber-50 hover:text-body'
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
-          return (
-            <button
-              key={service.id}
-              onClick={() => onServiceChange(service.id)}
-              className={`flex-1 min-w-[160px] sm:min-w-max text-xs uppercase tracking-wider font-medium py-3.5 px-4 border-b-2 cursor-pointer transition-all duration-150 whitespace-nowrap snap-start ${
-                isActive
-                  ? 'text-accent border-b-accent bg-amber-100'
-                  : 'text-body border-b-transparent bg-transparent hover:bg-amber-50 hover:text-body'
-              }`}
-            >
-              {service.label}
-            </button>
-          )
-        })}
-      </nav>
+      {/* Mobile */}
+      <div className="sm:hidden">
+        <button
+          onClick={() => setMobileOpen((o) => !o)}
+          className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-body"
+        >
+          <span className="text-accent uppercase tracking-wider text-xs font-semibold">
+            {sections.find((s) => s.id === active)?.label ?? 'Menu'}
+          </span>
+          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
 
-      {/* Visual scroll cue - Subtle fade gradient + pulsing indicator arrow */}
-      {canScrollRight && (
-        <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-surface via-surface/80 to-transparent pointer-events-none flex items-center justify-end pr-2">
-          <ChevronRight size={16} className="text-body/60 animate-pulse bg-surface/50 rounded-full backdrop-blur-sm shadow-sm" />
-        </div>
-      )}
-    </div>
+        {mobileOpen && (
+          <div ref={menuRef} className="border-t border-gray-200 bg-white">
+            {sections.map(({ id, label }) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className={`w-full text-left px-5 py-3.5 text-sm border-b border-gray-100 last:border-b-0 transition-colors ${
+                  active === id ? 'text-accent font-semibold bg-amber-50' : 'text-body hover:bg-gray-50'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </nav>
   )
 }

@@ -946,10 +946,16 @@ export default function CatalogModal({ isOpen, onClose }) {
   `
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/75 flex overflow-y-auto">
+    <div
+      className="fixed inset-0 z-50 bg-black/75 flex overflow-y-auto"
+      onClick={onClose}
+    >
       <style dangerouslySetInnerHTML={{ __html: cssStyles }} />
       
-      <div className="relative w-full max-w-[850px] mx-auto bg-[#050A14] shadow-2xl md:border md:border-gray-800 flex flex-col my-0 md:my-8 rounded-none md:rounded-lg">
+      <div
+        className="relative w-full max-w-[850px] mx-auto bg-[#050A14] shadow-2xl md:border md:border-gray-800 flex flex-col my-0 md:my-8 rounded-none md:rounded-lg"
+        onClick={(event) => event.stopPropagation()}
+      >
         
         {/* Sticky Close Button */}
         <div className="sticky top-0 z-50 flex justify-end bg-[#050A14]/95 backdrop-blur-md border-b border-gray-800 p-4">

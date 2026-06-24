@@ -712,6 +712,174 @@ const globalStyles = `
   color: var(--mist);
   margin-top: 2px;
 }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 640px) {
+  .lk-root {
+    padding: 0;
+  }
+
+  .lk-page {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    margin: 0 0 16px;
+    border-radius: 0;
+  }
+
+  .lk-cover {
+    min-height: auto;
+  }
+
+  .lk-cover-body {
+    padding: 32px 20px 28px;
+  }
+
+  .lk-cover-body::before { top: 24px; left: 14px; }
+  .lk-cover-body::after  { bottom: 24px; right: 14px; }
+
+  .lk-cover-company {
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-bottom: 28px;
+  }
+
+  .lk-cover-product-line {
+    font-size: 13px;
+    letter-spacing: 5px;
+  }
+
+  .lk-cover-h1 {
+    font-size: 58px;
+    letter-spacing: -2px;
+  }
+
+  .lk-cover-desc {
+    font-size: 13px;
+    max-width: 100%;
+    margin-bottom: 28px;
+  }
+
+  .lk-vessel-tags {
+    margin-bottom: 28px;
+  }
+
+  .lk-cover-specs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lk-cspec {
+    padding: 14px 12px;
+  }
+
+  .lk-cspec-val {
+    font-size: 18px;
+  }
+
+  .lk-cover-mfr {
+    padding: 14px 20px;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .lk-mfr-addr {
+    text-align: left;
+  }
+
+  .lk-strip {
+    padding: 10px 16px;
+  }
+
+  .lk-strip-doc {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .lk-inner-body {
+    padding: 24px 16px 60px;
+  }
+
+  .lk-sec-h {
+    font-size: 24px;
+  }
+
+  .lk-sec-intro {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .lk-sec-pg {
+    display: none;
+  }
+
+  .lk-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lk-ov-card.wide {
+    grid-column: span 1;
+  }
+
+  .lk-target-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lk-vessel-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lk-app-split {
+    grid-template-columns: 1fr;
+  }
+
+  .lk-safety-3col {
+    grid-template-columns: 1fr;
+  }
+
+  .lk-scope-box {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .lk-scope-label {
+    white-space: normal;
+  }
+
+  .lk-scope-vals {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .lk-abbrev-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .lk-lab-card {
+    grid-template-columns: 1fr;
+  }
+
+  .lk-lab-icon-wrap {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .lk-foot-bar {
+    padding: 12px 16px;
+  }
+
+  .lk-foot-contact {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .lk-pg-num {
+    right: 16px;
+    bottom: 16px;
+  }
+}
 `;
 
 // ─── Shared sub-components ───────────────────────────────────────────────────

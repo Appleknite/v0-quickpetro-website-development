@@ -127,7 +127,7 @@ export default function FiltrationSystem() {
             aria-label="Download filtration catalogue PDF"
             className="flex items-center gap-1.5 bg-white border border-gray-200 hover:border-indigo-600 hover:text-indigo-600 rounded-lg px-3.5 py-2 text-xs font-semibold text-gray-700 shadow-sm transition-all no-underline"
           >
-            <FileText size={14} className="text-indigo-600" aria-hidden="true" /> Catalogue
+            <FileText size={14} className="text-indigo-600" aria-hidden="true" /> TF Clean
           </a>
           <button
             onClick={() => setShowImages(true)}

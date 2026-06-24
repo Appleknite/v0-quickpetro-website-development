@@ -1,6 +1,6 @@
 'use client'
 
-import { Flame } from 'lucide-react'
+import { Flame, ArrowRight } from 'lucide-react'
 
 export default function Hero() {
   const scrollTo = (id: string) => {
@@ -8,67 +8,115 @@ export default function Hero() {
   }
 
   return (
-    <section className="w-full bg-primary border-t border-gray-700 px-4 sm:px-6 py-8 sm:py-12 overflow-x-hidden">
-      <div className="inline-flex items-center gap-1.5 bg-amber-600/15 border border-amber-600/30 text-accent text-xs font-semibold uppercase tracking-widest px-2.5 py-1 rounded-sm mb-4 whitespace-nowrap">
-        <Flame size={14} />
-        <span className="hidden sm:inline">Thermic Fluid Systems Specialists</span>
-        <span className="sm:hidden">Thermic Fluid</span>
-      </div>
-
-      <h1 className="text-white text-xl sm:text-2xl md:text-3xl font-semibold leading-snug mb-3">
-        Optimizing <span className="text-accent">Thermic Fluid Systems</span>
-      </h1>
-
-      <p className="text-gray-400 text-sm max-w-lg mb-2 leading-relaxed">
-        We help you <strong className="text-accent font-semibold">prevent breakdowns</strong>, <strong className="text-accent font-semibold">reduce downtime</strong>, and protect your equipment — specialized cleaning and filtering for heat transfer fluid systems.
-      </p>
-
-      <p className="text-[#B8BFC8] text-xs sm:text-sm italic mb-6">
-        Founded by <strong className="text-gray-200 not-italic font-medium">Mr. Dhavalkumar Gandhi</strong> — keeping plants running smoothly since 1998.
-      </p>
-
-      <div className="flex gap-4 sm:gap-7 mb-8">
-        <div className="border-l-2 border-secondary pl-3">
-          <div className="font-mono text-xl sm:text-2xl font-semibold text-white">26+</div>
-          <div className="text-gray-400 text-xs uppercase tracking-wide">Years Experience</div>
+    <section
+      className="w-full bg-[#1F2937] border-t border-gray-700/50 px-4 sm:px-6 py-10 sm:py-16 overflow-x-hidden"
+      aria-label="QuickPetro thermic fluid system specialists"
+    >
+      <div className="max-w-6xl mx-auto">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-1.5 bg-amber-600/15 border border-amber-600/30 text-[#F59E0B] text-xs font-semibold uppercase tracking-widest px-2.5 py-1 rounded-sm mb-5">
+          <Flame size={13} aria-hidden="true" />
+          <span>Thermic Fluid System Specialists</span>
         </div>
-        <div className="border-l-2 border-secondary pl-3">
-          <div className="font-mono text-xl sm:text-2xl font-semibold text-white">900+</div>
-          <div className="text-gray-400 text-xs uppercase tracking-wide">Companies Served</div>
-        </div>
-      </div>
 
-      {/* CTA buttons */}
-      <div className="flex flex-wrap gap-3 mb-8">
-        <button
-          onClick={() => scrollTo('support')}
-          className="flex items-center gap-2 bg-white text-gray-900 font-semibold text-sm px-5 py-2.5 rounded-md hover:bg-gray-100 transition-colors cursor-pointer"
+        {/* Headline */}
+        <h1
+          className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold leading-snug mb-4 max-w-2xl"
+          style={{ textWrap: 'balance' } as React.CSSProperties}
         >
-          Send Enquiry
-        </button>
-        <a
-          href="https://wa.me/919825044917"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-green-500 text-white font-semibold text-sm px-5 py-2.5 rounded-md hover:bg-green-600 transition-colors no-underline"
-        >
-          WhatsApp Us
-        </a>
-      </div>
+          Keep Your{' '}
+          <span className="text-[#F59E0B]">Thermic Fluid Systems</span>{' '}
+          Running at Peak Efficiency
+        </h1>
 
-      {/* Trust bar */}
-      <div className="border-t border-gray-700 pt-5">
-        <p className="text-gray-500 text-xs uppercase tracking-widest mb-3">Trusted by</p>
-        <div className="flex flex-wrap gap-2 items-center">
-          {['Asahi India Glass Ltd.', 'Patanjali Ayurved Ltd.', 'Meghmani Organics Ltd.'].map((name) => (
-            <span
-              key={name}
-              className="bg-gray-800 border border-gray-700 text-gray-300 text-xs px-3 py-1 rounded"
+        {/* Sub-copy */}
+        <p className="text-gray-400 text-sm sm:text-base max-w-xl mb-2 leading-relaxed">
+          Prevent breakdowns, reduce downtime, and protect your equipment with specialized{' '}
+          <strong className="text-gray-200 font-medium">
+            thermic fluid cleaning, filtration, and NABL-accredited analysis
+          </strong>{' '}
+          for industrial heat transfer systems.
+        </p>
+
+        <p className="text-gray-500 text-xs sm:text-sm mb-8">
+          Founded by{' '}
+          <strong className="text-gray-300 font-medium">Dhavalkumar Gandhi</strong> — keeping
+          industrial plants running smoothly since 1998.
+        </p>
+
+        {/* Stats */}
+        <div
+          className="flex gap-6 sm:gap-10 mb-9"
+          role="list"
+          aria-label="QuickPetro credentials"
+        >
+          {[
+            { value: '26+', label: 'Years Experience' },
+            { value: '900+', label: 'Companies Served' },
+          ].map(({ value, label }) => (
+            <div
+              key={label}
+              role="listitem"
+              className="border-l-2 border-[#D97706] pl-4"
             >
-              {name}
-            </span>
+              <div className="font-mono text-2xl sm:text-3xl font-semibold text-white leading-none mb-1">
+                {value}
+              </div>
+              <div className="text-gray-400 text-xs uppercase tracking-wide">{label}</div>
+            </div>
           ))}
-          <span className="text-gray-500 text-xs ml-1">& 900+ other companies</span>
+        </div>
+
+        {/* CTAs */}
+        <div className="flex flex-wrap gap-3 mb-10">
+          <button
+            onClick={() => scrollTo('support')}
+            className="flex items-center gap-2 bg-[#F59E0B] text-gray-900 font-semibold text-sm px-5 py-3 rounded-md hover:bg-amber-400 transition-colors cursor-pointer"
+          >
+            Send Enquiry
+            <ArrowRight size={15} aria-hidden="true" />
+          </button>
+          <a
+            href="https://wa.me/919825044917"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp QuickPetro"
+            className="flex items-center gap-2 bg-green-500 text-white font-semibold text-sm px-5 py-3 rounded-md hover:bg-green-400 transition-colors no-underline"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.122 1.525 5.857L.057 23.882a.5.5 0 0 0 .613.613l6.109-1.46A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.372l-.36-.213-3.727.892.908-3.636-.234-.373A9.818 9.818 0 1 1 12 21.818z" />
+            </svg>
+            WhatsApp Us
+          </a>
+        </div>
+
+        {/* Trust bar */}
+        <div className="border-t border-gray-700/60 pt-5">
+          <p className="text-gray-500 text-xs uppercase tracking-widest mb-3">
+            Trusted by India's leading manufacturers
+          </p>
+          <div className="flex flex-wrap gap-2 items-center">
+            {[
+              'Asahi India Glass Ltd.',
+              'Patanjali Ayurved Ltd.',
+              'Meghmani Organics Ltd.',
+            ].map((name) => (
+              <span
+                key={name}
+                className="bg-gray-800/80 border border-gray-700/60 text-gray-300 text-xs px-3 py-1.5 rounded"
+              >
+                {name}
+              </span>
+            ))}
+            <span className="text-gray-500 text-xs">& 900+ other companies</span>
+          </div>
         </div>
       </div>
     </section>

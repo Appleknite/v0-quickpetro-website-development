@@ -2,55 +2,85 @@
 
 @layer base {
   :root {
-    --color-primary: #1F2937;
-    --color-secondary: #D97706;
-    --color-accent: #F59E0B;
-    --color-surface: #F8FAFC;
-    --color-body: #111827;
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
     background-color: rgb(248 250 252);
     color: rgb(17 24 39);
-    font-family: var(--font-sans);
+    font-family: var(--font-sans, sans-serif);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Accessible keyboard focus */
+  :focus-visible {
+    outline: 2px solid #f59e0b;
+    outline-offset: 2px;
+  }
+
+/* Scroll offset for sticky header + nav */
+#filtration,
+#cleaning,
+#analysis,
+#support {
+  scroll-margin-top: 108px;
+}
+
+/* Section reveal animations */
+@media (prefers-reduced-motion: no-preference) {
+  .section-enter {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s var(--ease-out-quart), transform 0.5s var(--ease-out-quart);
+  }
+  .section-enter.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@supports (color: rgb(from white r g b)) {
-  @layer utilities {
-    @keyframes none {}
-    .bg-primary {
-      background-color: #1F2937;
-    }
-    .bg-secondary {
-      background-color: #D97706;
-    }
-    .bg-accent {
-      background-color: #F59E0B;
-    }
-    .bg-surface {
-      background-color: #F8FAFC;
-    }
-    .bg-body {
-      background-color: #111827;
-    }
-    .text-accent {
-      color: #F59E0B;
-    }
-    .text-primary {
-      color: #1F2937;
-    }
-    .text-secondary {
-      color: #D97706;
-    }
-    .text-body {
-      color: #111827;
-    }
+/* Always show content (reduced-motion or JS-disabled) */
+.section-enter {
+  opacity: 1;
+  transform: none;
+}
+
+/* Mobile touch targets */
+@media (max-width: 640px) {
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
 
-/* Anchor scroll offset: account for sticky header + nav */
-#filtration, #cleaning, #analysis, #support {
-  scroll-margin-top: 100px;
+input,
+textarea,
+select {
+  font-family: var(--font-sans, sans-serif);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

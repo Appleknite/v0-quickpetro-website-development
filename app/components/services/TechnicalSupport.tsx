@@ -1,5 +1,6 @@
 'use client'
 
+import type { FormEvent } from 'react'
 import { useState } from 'react'
 import { CheckCircle, Phone, Mail } from 'lucide-react'
 
@@ -17,7 +18,7 @@ export default function TechnicalSupport() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsSubmitting(true)
     setResult('')
@@ -148,7 +149,8 @@ export default function TechnicalSupport() {
             <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
               Or reach us directly
             </p>
-            
+        
+            <a
               href="https://wa.me/919825044917"
               target="_blank"
               rel="noopener noreferrer"
@@ -165,7 +167,8 @@ export default function TechnicalSupport() {
                 </p>
               </div>
             </a>
-            
+        
+            <a
               href="mailto:quickpetro@gmail.com"
               aria-label="Email QuickPetro"
               className="flex items-center gap-3 no-underline group"
@@ -180,10 +183,11 @@ export default function TechnicalSupport() {
                 </p>
               </div>
             </a>
+        
             <div className="mt-5 pt-4 border-t border-gray-100">
               <p className="text-xs text-gray-400 leading-relaxed">
-                Response within <strong className="text-gray-600">1 business day</strong> on
-                enquiries. WhatsApp for urgent assistance.
+                Response within <strong className="text-gray-600">1 business day</strong> on enquiries.
+                WhatsApp for urgent assistance.
               </p>
             </div>
           </div>

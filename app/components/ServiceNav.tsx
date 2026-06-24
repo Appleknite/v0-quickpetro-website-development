@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const sections = [
   { id: 'filtration', label: 'Filtration System' },
-  { id: 'cleaning', label: 'Thermic Fluid System Cleaning' },
+  { id: 'cleaning', label: 'System Cleaning' },
   { id: 'analysis', label: 'Fluid Analysis' },
   { id: 'support', label: 'Get a Quote' },
 ]
@@ -13,12 +13,10 @@ const sections = [
 export default function ServiceNav() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [active, setActive] = useState('filtration')
-  const menuRef = useRef<HTMLDivElement>(null)
 
   const scrollTo = (id: string) => {
-    // Get header + nav height for offset
     const header = document.querySelector('header')
-    const nav = document.querySelector('nav')
+    const nav = document.querySelector('nav[aria-label="Services"]')
     const offset = (header?.offsetHeight ?? 0) + (nav?.offsetHeight ?? 0)
     const el = document.getElementById(id)
     if (el) {
@@ -28,18 +26,16 @@ export default function ServiceNav() {
     setMobileOpen(false)
   }
 
-  // Close mobile menu on scroll
   useEffect(() => {
-    const handleScroll = () => setMobileOpen(false)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const close = () => setMobileOpen(false)
+    window.addEventListener('scroll', close, { passive: true })
+    return () => window.removeEventListener('scroll', close)
   }, [])
 
-  // Track active section on scroll
   useEffect(() => {
     const header = document.querySelector('header')
-    const nav = document.querySelector('nav')
-    const offset = (header?.offsetHeight ?? 48) + (nav?.offsetHeight ?? 40) + 8
+    const nav = document.querySelector('nav[aria-label="Services"]')
+    const offset = (header?.offsetHeight ?? 56) + (nav?.offsetHeight ?? 44) + 8
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -57,18 +53,27 @@ export default function ServiceNav() {
   }, [])
 
   return (
-    <nav className="sticky top-[48px] sm:top-[52px] z-40 bg-surface border-t border-gray-200 shadow-sm">
+    <nav
+      className="sticky top-14 sm:top-16 z-40 bg-white border-b border-gray-200 shadow-sm"
+      aria-label="Services"
+    >
       {/* Desktop */}
-      <div className="hidden sm:flex">
+      <div className="hidden sm:flex max-w-6xl mx-auto" role="tablist">
         {sections.map(({ id, label }) => (
           <button
             key={id}
+            role="tab"
+            aria-selected={active === id}
+            aria-controls={id}
             onClick={() => scrollTo(id)}
-            className={`flex-1 min-w-max text-xs uppercase tracking-wider font-medium py-3.5 px-4 border-b-2 cursor-pointer transition-all duration-150 whitespace-nowrap ${
+            className={[
+              'flex-1 min-w-max text-xs uppercase tracking-wider font-semibold py-3.5 px-4 border-b-2',
+              'cursor-pointer transition-all duration-150 whitespace-nowrap',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-inset',
               active === id
-                ? 'text-accent border-b-accent bg-amber-50'
-                : 'text-body border-b-transparent hover:bg-amber-50 hover:text-body'
-            }`}
+                ? 'text-[#D97706] border-b-[#D97706] bg-amber-50'
+                : 'text-gray-700 border-b-transparent hover:bg-amber-50/60 hover:text-[#D97706]',
+            ].join(' ')}
           >
             {label}
           </button>
@@ -79,23 +84,37 @@ export default function ServiceNav() {
       <div className="sm:hidden">
         <button
           onClick={() => setMobileOpen((o) => !o)}
-          className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-body"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-service-menu"
+          className="w-full flex items-center justify-between px-4 py-3.5 text-sm font-medium text-gray-800"
         >
-          <span className="text-accent uppercase tracking-wider text-xs font-semibold">
-            {sections.find((s) => s.id === active)?.label ?? 'Menu'}
+          <span className="text-[#D97706] uppercase tracking-wider text-xs font-semibold">
+            {sections.find((s) => s.id === active)?.label ?? 'Services'}
           </span>
-          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          {mobileOpen ? (
+            <X size={18} aria-hidden="true" />
+          ) : (
+            <Menu size={18} aria-hidden="true" />
+          )}
         </button>
 
         {mobileOpen && (
-          <div ref={menuRef} className="border-t border-gray-200 bg-white">
+          <div
+            id="mobile-service-menu"
+            role="menu"
+            className="border-t border-gray-100 bg-white shadow-md"
+          >
             {sections.map(({ id, label }) => (
               <button
                 key={id}
+                role="menuitem"
                 onClick={() => scrollTo(id)}
-                className={`w-full text-left px-5 py-3.5 text-sm border-b border-gray-100 last:border-b-0 transition-colors ${
-                  active === id ? 'text-accent font-semibold bg-amber-50' : 'text-body hover:bg-gray-50'
-                }`}
+                className={[
+                  'w-full text-left px-5 py-4 text-sm border-b border-gray-100 last:border-b-0 transition-colors',
+                  active === id
+                    ? 'text-[#D97706] font-semibold bg-amber-50'
+                    : 'text-gray-800 hover:bg-gray-50',
+                ].join(' ')}
               >
                 {label}
               </button>

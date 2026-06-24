@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import { FileText, Flame, ShieldCheck, Zap } from 'lucide-react'
 import CatalogModal from '../CatalogModal'
+import LegaKCatalogModal from '../LegaKCatalogModal'
 import MetricStack from '../MetricStack'
 import FlipCards from '../FlipCards'
 
 export default function ThermicFluidCleaning() {
   const [isCatalogOpen, setIsCatalogOpen] = useState(false)
+  const [isLegaKOpen, setIsLegaKOpen] = useState(false)
 
   const metrics = [
     {
@@ -148,13 +150,22 @@ export default function ThermicFluidCleaning() {
             peak efficiency.
           </p>
         </div>
-        <button
-          onClick={() => setIsCatalogOpen(true)}
-          aria-label="View LEGA-R product catalogue"
-          className="flex items-center gap-1.5 bg-white border border-gray-200 hover:border-blue-600 hover:text-blue-600 rounded-lg px-3.5 py-2 text-xs font-semibold text-gray-700 shadow-sm transition-all cursor-pointer self-start md:self-center"
-        >
-          <FileText size={14} className="text-blue-600" aria-hidden="true" /> LEGA R
-        </button>
+        <div className="flex gap-2 self-start md:self-center">
+          <button
+            onClick={() => setIsCatalogOpen(true)}
+            aria-label="View LEGA-R product catalogue"
+            className="flex items-center gap-1.5 bg-white border border-gray-200 hover:border-blue-600 hover:text-blue-600 rounded-lg px-3.5 py-2 text-xs font-semibold text-gray-700 shadow-sm transition-all cursor-pointer"
+          >
+            <FileText size={14} className="text-blue-600" aria-hidden="true" /> LEGA R
+          </button>
+          <button
+            onClick={() => setIsLegaKOpen(true)}
+            aria-label="View LEGA-K product catalogue"
+            className="flex items-center gap-1.5 bg-white border border-gray-200 hover:border-blue-600 hover:text-blue-600 rounded-lg px-3.5 py-2 text-xs font-semibold text-gray-700 shadow-sm transition-all cursor-pointer"
+          >
+            <FileText size={14} className="text-blue-600" aria-hidden="true" /> LEGA K
+          </button>
+        </div>
       </div>
 
       {/* Metrics */}
@@ -182,6 +193,7 @@ export default function ThermicFluidCleaning() {
       <FlipCards cards={cards} />
 
       <CatalogModal isOpen={isCatalogOpen} onClose={() => setIsCatalogOpen(false)} />
+      <LegaKCatalogModal isOpen={isLegaKOpen} onClose={() => setIsLegaKOpen(false)} />
 
       {/* Hidden SEO article */}
       <article

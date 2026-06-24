@@ -153,7 +153,7 @@ export default function ThermicFluidCleaning() {
           aria-label="View LEGA-R product catalogue"
           className="flex items-center gap-1.5 bg-white border border-gray-200 hover:border-blue-600 hover:text-blue-600 rounded-lg px-3.5 py-2 text-xs font-semibold text-gray-700 shadow-sm transition-all cursor-pointer self-start md:self-center"
         >
-          <FileText size={14} className="text-blue-600" aria-hidden="true" /> Catalogue
+          <FileText size={14} className="text-blue-600" aria-hidden="true" /> LEGA R
         </button>
       </div>
 

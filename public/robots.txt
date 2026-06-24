@@ -1,0 +1,30 @@
+# QuickPetro — robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# AI citation bots — allow indexing and citation
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Block training crawlers (citation via search bots above)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://quickpetro.com/sitemap.xml

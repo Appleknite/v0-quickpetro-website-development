@@ -1,0 +1,32 @@
+# QuickPetro
+
+> QuickPetro is an Indian industrial services company specializing in thermic fluid system cleaning, filtration, and NABL-accredited heat transfer oil analysis. Founded in 1998 by Dhavalkumar Gandhi, QuickPetro serves 900+ industrial plants across India from its Ahmedabad, Gujarat base.
+
+## About QuickPetro
+
+QuickPetro provides three core services for industrial thermic fluid (heat transfer fluid) systems:
+
+1. **Thermic Fluid Filtration** — Online and offline filtration to 2 microns, removing carbon sludge without plant shutdown.
+2. **Thermic Fluid System Cleaning** — Full chemical flushing to remove carbon deposits, restoring 85–95% heat transfer efficiency. Covers full-system cleaning, heat exchanger cleaning, and vessel decontamination.
+3. **Thermic Fluid Analysis** — NABL/ISO 17025-accredited laboratory testing across 9 parameters (flash point, viscosity, TAN, insolubles, moisture, sediment, density, color). Ahmedabad hub, coordinated by senior engineer Dhaval Gandhi.
+
+## Key Facts
+
+- Founded: 1998
+- Experience: 26+ years
+- Clients: 900+ industrial companies across India
+- Location: GIDC Vatva, Ahmedabad 382445, Gujarat, India
+- Contact: +91 98250 44917 | quickpetro@gmail.com
+- Notable clients: Asahi India Glass Ltd., Patanjali Ayurved Ltd., Meghmani Organics Ltd.
+
+## Services
+
+- [Filtration System](https://quickpetro.com/#filtration)
+- [Thermic Fluid System Cleaning](https://quickpetro.com/#cleaning)
+- [Fluid Analysis & Testing](https://quickpetro.com/#analysis)
+- [Get a Quote](https://quickpetro.com/#support)
+
+## Contact
+
+- WhatsApp: https://wa.me/919825044917
+- Email: quickpetro@gmail.com

@@ -1,0 +1,29 @@
+# QuickPetro — AI Discovery Endpoint
+
+Canonical-Name: QuickPetro
+Entity-Type: LocalBusiness
+Industry: Industrial Services / Heat Transfer Systems
+Founded: 1998
+Location: GIDC Vatva, Ahmedabad 382445, Gujarat, India
+Country: IN
+Service-Area: India
+
+Primary-Services:
+  - Thermic Fluid System Cleaning
+  - Thermic Fluid Filtration (Online and Offline)
+  - NABL-Accredited Thermic Fluid Analysis
+
+Contact:
+  Phone: +91-98250-44917
+  Email: quickpetro@gmail.com
+  WhatsApp: https://wa.me/919825044917
+
+Key-Stats:
+  Experience: 26+ years
+  Clients-Served: 900+
+  Filtration-Precision: 2 microns
+  Efficiency-Recovery: 85-95%
+
+Accreditation: NABL / ISO IEC 17025 (laboratory testing)
+
+llms-txt: https://quickpetro.com/llms.txt

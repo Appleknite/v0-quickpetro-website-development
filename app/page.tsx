@@ -11,17 +11,27 @@ import Footer from './components/Footer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-primary pt-20 sm:pt-24">
-      <Header />
-      <Hero />
-      <ServiceNav />
-      <main className="bg-surface flex flex-col">
-        <section id="filtration"><FiltrationSystem /></section>
-        <section id="cleaning"><ThermicFluidCleaning /></section>
-        <section id="analysis"><FluidAnalysis /></section>
-        <section id="support"><TechnicalSupport /></section>
-      </main>
-      <Footer />
-    </div>
+    <>
+      <div className="min-h-screen flex flex-col overflow-x-hidden bg-[#1F2937] pt-14 sm:pt-16">
+        <Header />
+        <Hero />
+        <ServiceNav />
+        <main id="main-content" className="bg-[#F8FAFC] flex flex-col" tabIndex={-1}>
+          <section id="filtration" aria-labelledby="filtration-heading">
+            <FiltrationSystem />
+          </section>
+          <section id="cleaning" aria-labelledby="cleaning-heading">
+            <ThermicFluidCleaning />
+          </section>
+          <section id="analysis" aria-labelledby="analysis-heading">
+            <FluidAnalysis />
+          </section>
+          <section id="support" aria-labelledby="support-heading">
+            <TechnicalSupport />
+          </section>
+        </main>
+        <Footer />
+      </div>
+    </>
   )
 }

@@ -21,10 +21,10 @@ QuickPetro provides three core services for industrial thermic fluid (heat trans
 
 ## Services
 
-- [Filtration System](https://quickpetro.com/#filtration)
-- [Thermic Fluid System Cleaning](https://quickpetro.com/#cleaning)
-- [Fluid Analysis & Testing](https://quickpetro.com/#analysis)
-- [Get a Quote](https://quickpetro.com/#support)
+- [Filtration System](https://quickpetro.in/#filtration)
+- [Thermic Fluid System Cleaning](https://quickpetro.in/#cleaning)
+- [Fluid Analysis & Testing](https://quickpetro.in/#analysis)
+- [Get a Quote](https://quickpetro.in/#support)
 
 ## Contact
 

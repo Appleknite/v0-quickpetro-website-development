@@ -26,4 +26,4 @@ Key-Stats:
 
 Accreditation: NABL / ISO IEC 17025 (laboratory testing)
 
-llms-txt: https://quickpetro.com/llms.txt
+llms-txt: https://quickpetro.in/llms.txt

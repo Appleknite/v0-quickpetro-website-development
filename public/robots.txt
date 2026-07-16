@@ -27,4 +27,4 @@ Disallow: /
 User-agent: CCBot
 Disallow: /
 
-Sitemap: https://quickpetro.com/sitemap.xml
+Sitemap: https://quickpetro.in/sitemap.xml

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     'QuickPetro specializes in thermic fluid system cleaning, filtration, and NABL-accredited fluid analysis. 26+ years experience. Serving 900+ industrial plants across India. Based in Ahmedabad, Gujarat.',
   keywords:
     'thermic fluid cleaning, thermic oil filtration, heat transfer fluid analysis, thermic fluid system maintenance, industrial thermic fluid services, Ahmedabad, Gujarat, India',
-  authors: [{ name: 'QuickPetro', url: 'https://quickpetro.com' }],
+  authors: [{ name: 'QuickPetro', url: 'https://quickpetro.in' }],
   openGraph: {
     title: 'QuickPetro | Thermic Fluid System Specialists',
     description:
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       '26+ years. 900+ industrial plants. Thermic fluid cleaning, filtration & NABL analysis.',
   },
   alternates: {
-    canonical: 'https://quickpetro.com',
+    canonical: 'https://quickpetro.in',
   },
   robots: {
     index: true,
@@ -50,11 +50,11 @@ export const metadata: Metadata = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': 'https://quickpetro.com/#organization',
+  '@id': 'https://quickpetro.in/#organization',
   name: 'QuickPetro',
   description:
     'Thermic fluid system cleaning, filtration, and NABL-accredited fluid analysis services for industrial plants across India.',
-  url: 'https://quickpetro.com',
+  url: 'https://quickpetro.in',
   telephone: '+919825044917',
   email: 'quickpetro@gmail.com',
   foundingDate: '1998',
@@ -96,7 +96,7 @@ const organizationSchema = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  provider: { '@id': 'https://quickpetro.com/#organization' },
+  provider: { '@id': 'https://quickpetro.in/#organization' },
   serviceType: 'Thermic Fluid System Maintenance',
   areaServed: { '@type': 'Country', name: 'India' },
   hasOfferCatalog: {
